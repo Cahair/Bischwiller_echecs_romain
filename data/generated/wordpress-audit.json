@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-07-18T08:49:00.663Z",
+  "exports": {
+    "contentItems": 705,
+    "mediaItems": 126
+  },
+  "counts": {
+    "byType": {
+      "attachment": 28,
+      "post": 643,
+      "revision": 33,
+      "wpuf_input": 1
+    },
+    "byStatus": {
+      "draft": 78,
+      "inherit": 61,
+      "publish": 566
+    },
+    "publishedPosts": 565,
+    "mediaUrls": 1799
+  },
+  "dateRange": {
+    "from": "2011-03-21 23:23:53",
+    "to": "2026-06-28 10:27:06"
+  },
+  "categories": [
+    {
+      "name": "Résultats sportifs",
+      "count": 276
+    },
+    {
+      "name": "Vie du club",
+      "count": 131
+    },
+    {
+      "name": "Dans la presse",
+      "count": 98
+    },
+    {
+      "name": "Championnat de France",
+      "count": 49
+    },
+    {
+      "name": "Evénements",
+      "count": 35
+    },
+    {
+      "name": "Annonces de Tournois (date expirée)",
+      "count": 23
+    },
+    {
+      "name": "Tournois annoncés",
+      "count": 23
+    },
+    {
+      "name": "Non classé",
+      "count": 18
+    },
+    {
+      "name": "Ecoles",
+      "count": 10
+    },
+    {
+      "name": "Actualités",
+      "count": 7
+    },
+    {
+      "name": "Vidéos",
+      "count": 5
+    },
+    {
+      "name": "Bienvenue",
+      "count": 3
+    },
+    {
+      "name": "Formation",
+      "count": 1
+    }
+  ]
+}

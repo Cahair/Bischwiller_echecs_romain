@@ -1,0 +1,356 @@
+{
+  "generatedAt": "2026-07-18T08:44:56.795Z",
+  "source": "https://bischwiller-echecs.com/wp-json/wp/v2/pages?per_page=100&_fields=id,slug,link,title,status,parent,date_gmt,modified_gmt",
+  "summary": {
+    "pages": 18,
+    "pagesToMigrate": 13,
+    "wordpressSystemPages": 4,
+    "legacyDuplicates": 1
+  },
+  "navigation": [
+    {
+      "label": "Le Club",
+      "href": "/le-club/",
+      "children": [
+        {
+          "label": "Un peu d’Histoire",
+          "href": "/un-peu-dhistoire/"
+        },
+        {
+          "label": "Palmarès",
+          "href": "/palmares/"
+        },
+        {
+          "label": "Scolaire",
+          "href": "/scolaire/"
+        },
+        {
+          "label": "Partenaires",
+          "href": "/partenaires/"
+        }
+      ]
+    },
+    {
+      "label": "Inscription",
+      "href": "/#inscriptions"
+    },
+    {
+      "label": "Actualités",
+      "href": "/actualites/",
+      "children": [
+        {
+          "label": "Articles",
+          "href": "/tous-les-articles/"
+        }
+      ]
+    },
+    {
+      "label": "Infos Pratiques",
+      "href": "/infos-pratiques/",
+      "children": [
+        {
+          "label": "Administratif",
+          "href": "/administratif/"
+        },
+        {
+          "label": "Horaires",
+          "href": "/horraires/"
+        },
+        {
+          "label": "Documents",
+          "href": "/documents/"
+        }
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "id": 27,
+      "slug": "accueil",
+      "title": "Accueil",
+      "route": "/",
+      "originalUrl": "https://bischwiller-echecs.com/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-06-19T15:44:41",
+      "modifiedAt": "2026-05-15T10:36:28",
+      "migrationRole": "home",
+      "migrate": true,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 9898,
+      "slug": "actualites",
+      "title": "Actualités",
+      "route": "/actualites/",
+      "originalUrl": "https://bischwiller-echecs.com/actualites/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-09-05T10:07:30",
+      "modifiedAt": "2025-09-29T16:21:14",
+      "migrationRole": "archive",
+      "migrate": true,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 9952,
+      "slug": "administratif",
+      "title": "Administratif",
+      "route": "/administratif/",
+      "originalUrl": "https://bischwiller-echecs.com/administratif/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-09-06T13:49:48",
+      "modifiedAt": "2025-09-29T12:04:44",
+      "migrationRole": "content",
+      "migrate": true,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 736,
+      "slug": "compte",
+      "title": "Compte",
+      "route": "/compte/",
+      "originalUrl": "https://bischwiller-echecs.com/compte/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-06-25T19:06:53",
+      "modifiedAt": "2025-06-25T19:06:53",
+      "migrationRole": "wordpress-system",
+      "migrate": false,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 738,
+      "slug": "connexion",
+      "title": "Connexion",
+      "route": "/connexion/",
+      "originalUrl": "https://bischwiller-echecs.com/connexion/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-06-25T19:06:53",
+      "modifiedAt": "2025-06-25T19:06:53",
+      "migrationRole": "wordpress-system",
+      "migrate": false,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 9876,
+      "slug": "documents",
+      "title": "Documents",
+      "route": "/documents/",
+      "originalUrl": "https://bischwiller-echecs.com/documents/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-09-04T13:09:20",
+      "modifiedAt": "2025-09-04T13:09:22",
+      "migrationRole": "content",
+      "migrate": true,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 2400,
+      "slug": "horraires",
+      "title": "Horaires",
+      "route": "/horraires/",
+      "originalUrl": "https://bischwiller-echecs.com/horraires/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-08-05T12:28:56",
+      "modifiedAt": "2025-09-29T18:10:50",
+      "migrationRole": "content",
+      "migrate": true,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 30,
+      "slug": "infos-pratiques",
+      "title": "Infos Pratiques",
+      "route": "/infos-pratiques/",
+      "originalUrl": "https://bischwiller-echecs.com/infos-pratiques/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-06-19T15:44:49",
+      "modifiedAt": "2025-09-29T17:22:06",
+      "migrationRole": "content",
+      "migrate": true,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 2287,
+      "slug": "le-club",
+      "title": "Le Club",
+      "route": "/le-club/",
+      "originalUrl": "https://bischwiller-echecs.com/le-club/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-08-05T07:41:28",
+      "modifiedAt": "2025-08-05T07:41:30",
+      "migrationRole": "content",
+      "migrate": true,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 1112,
+      "slug": "mentions-legales",
+      "title": "Mentions legales",
+      "route": "/mentions-legales/",
+      "originalUrl": "https://bischwiller-echecs.com/mentions-legales/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-06-27T13:16:54",
+      "modifiedAt": "2025-09-29T17:14:25",
+      "migrationRole": "content",
+      "migrate": true,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 737,
+      "slug": "modifier",
+      "title": "Modifier",
+      "route": "/modifier/",
+      "originalUrl": "https://bischwiller-echecs.com/modifier/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-06-25T19:06:53",
+      "modifiedAt": "2025-06-25T19:06:53",
+      "migrationRole": "wordpress-system",
+      "migrate": false,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 2576,
+      "slug": "palmares",
+      "title": "Palmarès",
+      "route": "/palmares/",
+      "originalUrl": "https://bischwiller-echecs.com/palmares/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-08-08T07:52:58",
+      "modifiedAt": "2025-09-06T14:06:05",
+      "migrationRole": "content",
+      "migrate": true,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 2291,
+      "slug": "partenaires",
+      "title": "Partenaires",
+      "route": "/partenaires/",
+      "originalUrl": "https://bischwiller-echecs.com/partenaires/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-08-05T07:42:18",
+      "modifiedAt": "2026-05-15T10:42:07",
+      "migrationRole": "content",
+      "migrate": true,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 2289,
+      "slug": "scolaire",
+      "title": "Scolaire",
+      "route": "/scolaire/",
+      "originalUrl": "https://bischwiller-echecs.com/scolaire/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-08-05T07:41:42",
+      "modifiedAt": "2025-09-29T18:08:08",
+      "migrationRole": "content",
+      "migrate": true,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 735,
+      "slug": "tableau-de-bord",
+      "title": "Tableau de bord",
+      "route": "/tableau-de-bord/",
+      "originalUrl": "https://bischwiller-echecs.com/tableau-de-bord/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-06-25T19:06:53",
+      "modifiedAt": "2025-06-25T19:06:53",
+      "migrationRole": "wordpress-system",
+      "migrate": false,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 1639,
+      "slug": "tous-les-articles",
+      "title": "Articles",
+      "route": "/tous-les-articles/",
+      "originalUrl": "https://bischwiller-echecs.com/tous-les-articles/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-07-01T13:57:16",
+      "modifiedAt": "2025-09-29T12:30:32",
+      "migrationRole": "archive",
+      "migrate": true,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 354,
+      "slug": "un-peu-dhistoire-2",
+      "title": "Un peu d’histoire 2",
+      "route": "/un-peu-dhistoire-2/",
+      "originalUrl": "https://bischwiller-echecs.com/un-peu-dhistoire-2/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-06-21T09:27:57",
+      "modifiedAt": "2025-08-04T09:09:06",
+      "migrationRole": "legacy-duplicate",
+      "migrate": false,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    },
+    {
+      "id": 32,
+      "slug": "un-peu-dhistoire",
+      "title": "Un peu d’histoire",
+      "route": "/un-peu-dhistoire/",
+      "originalUrl": "https://bischwiller-echecs.com/un-peu-dhistoire/",
+      "status": "publish",
+      "parentId": null,
+      "publishedAt": "2025-06-19T15:45:15",
+      "modifiedAt": "2025-08-04T11:48:26",
+      "migrationRole": "content",
+      "migrate": true,
+      "wordCount": 0,
+      "imageCount": 0,
+      "headingCount": 0
+    }
+  ]
+}

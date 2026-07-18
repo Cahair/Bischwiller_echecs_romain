@@ -1,0 +1,22 @@
+# Dependencies
+/node_modules
+/.pnpm-store
+
+# Next.js
+/.next
+/out
+
+# Production and local environment files
+/build
+.env*
+!.env.example
+
+# Tooling
+*.log
+.DS_Store
+Thumbs.db
+*.tsbuildinfo
+next-env.d.ts
+
+# Private WordPress source exports
+/data/wordpress/*.xml
