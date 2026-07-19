@@ -99,7 +99,7 @@ export function Registrations() {
 export function Formation() {
   return (
     <section className={styles.formation} data-reveal>
-      <div className={styles.formationImage}><Image src="/media/wordpress/2025/07/Photo-de-groupe-4.jpg" alt="Les jeunes joueurs du Cercle d’Échecs de Bischwiller" fill quality={90} sizes="(max-width: 850px) 100vw, 58vw" /></div>
+      <div className={styles.formationImage}><Image src="/media/wordpress/2025/06/IMG-20241130-WA0001-002.webp" alt="Les jeunes joueurs du Cercle d’Échecs de Bischwiller" fill quality={90} sizes="(max-width: 850px) 100vw, 58vw" /></div>
       <div className={styles.formationCopy}><span className={styles.index}>04 / TRANSMETTRE</span><h2>Le talent se travaille en équipe.</h2><p>Notre école accompagne chaque jeune à son rythme, avec des formateurs expérimentés et un parcours pensé pour durer.</p><div className={styles.labels}><Image src="/media/wordpress/2025/09/club_formateur-removebg-preview.png" alt="Label Club Formateur" width={120} height={145} /><Image src="/media/wordpress/2025/09/club_feminin-removebg-preview.png" alt="Label Club Féminin" width={105} height={145} /></div><Link className={styles.outlineButton} href="/scolaire">Découvrir la formation <Arrow /></Link></div>
     </section>
   );
@@ -117,7 +117,7 @@ export function Teams() {
 export function Palmares() {
   return (
     <section className={styles.palmares} aria-labelledby="palmares-title" data-reveal>
-      <Image src="/media/wordpress/2025/06/top12titre.webp" alt="L’équipe de Bischwiller célèbre un titre" fill quality={90} sizes="100vw" />
+      <Image src="/media/wordpress/2026/05/20260523_163254-scaled.jpg" alt="Les joueuses du club célèbrent un titre avec leurs trophées" fill quality={90} sizes="100vw" />
       <div className={styles.palmaresShade} />
       <div className={styles.palmaresCopy}><span>UNE HISTOIRE D’EXCELLENCE</span><h2 id="palmares-title">Des titres.<br />Des souvenirs.<br />Une équipe.</h2><p>Cinq titres de champion de France des clubs et une ambition toujours intacte.</p><Link className={styles.lightButton} href="/palmares">Voir le palmarès <Arrow /></Link></div>
     </section>
