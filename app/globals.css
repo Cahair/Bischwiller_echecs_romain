@@ -9,7 +9,7 @@
   --muted: #5d6572;
   --blue: #4165c0;
   --blue-bright: #5d82df;
-  --blue-on-dark: #91adf1;
+  --blue-on-dark: #a9c0f6;
   --paper: #f3f0e8;
   --paper-deep: #e9e6de;
   --white: #fcfbf7;
@@ -17,10 +17,10 @@
   --surface-dark: #0c1017;
   --surface-dark-soft: #171c25;
   --text-body: #4f5865;
-  --text-on-dark: #c7ccd5;
-  --text-muted-dark: #a2a9b5;
-  --text-faint-dark: #89929f;
-  --line-dark: rgb(255 255 255 / 16%);
+  --text-on-dark: #e0e4eb;
+  --text-muted-dark: #bfc6d2;
+  --text-faint-dark: #a6afbd;
+  --line-dark: rgb(255 255 255 / 24%);
   --photo-natural: saturate(0.82) contrast(1.02);
   --photo-editorial: grayscale(0.76) contrast(1.04);
   --photo-mono: grayscale(1) contrast(1.06);
@@ -31,7 +31,7 @@
   --radius-sm: 14px;
   --blur: none;
   --glass-clear-bg: rgb(15 19 27 / 88%);
-  --glass-clear-border: rgb(255 255 255 / 22%);
+  --glass-clear-border: rgb(255 255 255 / 30%);
   --glass-milk-bg: rgb(252 251 247 / 94%);
   --glass-milk-border: rgb(255 255 255 / 70%);
   --glass-ink-bg: rgb(13 17 24 / 94%);
@@ -156,9 +156,9 @@ a {
 .hero__shade {
   z-index: -1;
   background:
-    linear-gradient(180deg, rgb(0 0 0 / 22%) 0%, transparent 22%),
-    linear-gradient(0deg, rgb(0 0 0 / 18%) 0%, transparent 22%),
-    rgb(4 6 9 / 8%);
+    linear-gradient(180deg, rgb(0 0 0 / 32%) 0%, transparent 24%),
+    linear-gradient(0deg, rgb(0 0 0 / 26%) 0%, transparent 24%),
+    rgb(4 6 9 / 12%);
   pointer-events: none;
 }
 

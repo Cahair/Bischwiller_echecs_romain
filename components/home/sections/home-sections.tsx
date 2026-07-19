@@ -41,7 +41,7 @@ function NewsCard({ article, featured = false }: { article: Article; featured?: 
   return (
     <article className={featured ? styles.newsFeatured : styles.newsCard}>
       <Link className={styles.newsImage} href={`/actualites/${article.slug}`}>
-        {article.featuredImage ? <Image src={article.featuredImage} alt="" fill sizes={featured ? "(max-width: 900px) 100vw, 66vw" : "(max-width: 900px) 100vw, 34vw"} /> : <span className={styles.imageFallback}>C.E.B.</span>}
+        {article.featuredImage ? <Image src={article.featuredImage} alt="" fill quality={featured ? 90 : 75} sizes={featured ? "(max-width: 1000px) 100vw, 66vw" : "(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 30vw"} /> : <span className={styles.imageFallback}>C.E.B.</span>}
       </Link>
       <div className={styles.newsCopy}>
         <div className={styles.newsMeta}><span>{article.categories[0] || "Actualités"}</span><time dateTime={article.publishedAt}>{formatDate(article.publishedAt)}</time></div>
@@ -99,7 +99,7 @@ export function Registrations() {
 export function Formation() {
   return (
     <section className={styles.formation} data-reveal>
-      <div className={styles.formationImage}><Image src="/media/wordpress/2025/07/Photo-de-groupe-4.jpg" alt="Les jeunes joueurs du Cercle d’Échecs de Bischwiller" fill sizes="(max-width: 850px) 100vw, 58vw" /></div>
+      <div className={styles.formationImage}><Image src="/media/wordpress/2025/07/Photo-de-groupe-4.jpg" alt="Les jeunes joueurs du Cercle d’Échecs de Bischwiller" fill quality={90} sizes="(max-width: 850px) 100vw, 58vw" /></div>
       <div className={styles.formationCopy}><span className={styles.index}>04 / TRANSMETTRE</span><h2>Le talent se travaille en équipe.</h2><p>Notre école accompagne chaque jeune à son rythme, avec des formateurs expérimentés et un parcours pensé pour durer.</p><div className={styles.labels}><Image src="/media/wordpress/2025/09/club_formateur-removebg-preview.png" alt="Label Club Formateur" width={120} height={145} /><Image src="/media/wordpress/2025/09/club_feminin-removebg-preview.png" alt="Label Club Féminin" width={105} height={145} /></div><Link className={styles.outlineButton} href="/scolaire">Découvrir la formation <Arrow /></Link></div>
     </section>
   );
@@ -117,7 +117,7 @@ export function Teams() {
 export function Palmares() {
   return (
     <section className={styles.palmares} aria-labelledby="palmares-title" data-reveal>
-      <Image src="/media/wordpress/2025/06/top12titre.webp" alt="L’équipe de Bischwiller célèbre un titre" fill sizes="100vw" />
+      <Image src="/media/wordpress/2025/06/top12titre.webp" alt="L’équipe de Bischwiller célèbre un titre" fill quality={90} sizes="100vw" />
       <div className={styles.palmaresShade} />
       <div className={styles.palmaresCopy}><span>UNE HISTOIRE D’EXCELLENCE</span><h2 id="palmares-title">Des titres.<br />Des souvenirs.<br />Une équipe.</h2><p>Cinq titres de champion de France des clubs et une ambition toujours intacte.</p><Link className={styles.lightButton} href="/palmares">Voir le palmarès <Arrow /></Link></div>
     </section>
@@ -128,7 +128,7 @@ export function Committee() {
   return (
     <section className={styles.committee} aria-labelledby="committee-title" data-reveal>
       <div className={styles.committeeCopy}><span className={styles.index}>06 / LE COLLECTIF</span><h2 id="committee-title">Le club vit grâce à eux.</h2><p>Christelle Schmidt, Roland Reeb, Yannis Savignon, Danielle Pivarot, Claudia Fischer et Ayline Klein œuvrent toute l’année au développement du club.</p><Link className={styles.outlineButton} href="/le-club">Rencontrer le club <Arrow /></Link></div>
-      <div className={styles.committeeImage}><Image src="/media/wordpress/2025/09/4U4A9864-scaled.jpg" alt="Le comité du Cercle d’Échecs de Bischwiller" fill sizes="(max-width: 850px) 100vw, 58vw" /><small>Photo Alain Hulot</small></div>
+      <div className={styles.committeeImage}><Image src="/media/wordpress/2025/09/4U4A9864-scaled.jpg" alt="Le comité du Cercle d’Échecs de Bischwiller" fill quality={90} sizes="(max-width: 850px) 100vw, 58vw" /><small>Photo Alain Hulot</small></div>
     </section>
   );
 }
