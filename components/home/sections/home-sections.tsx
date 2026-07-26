@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import articleIndex from "@/data/generated/article-index.json";
+import { SponsorGrid } from "@/components/sponsors/sponsor-grid";
+import { sponsors } from "@/lib/sponsors";
 import styles from "./home-sections.module.css";
 
 type Article = (typeof articleIndex)[number];
@@ -15,17 +17,6 @@ const teams = [
   ["02", "Nationale IV", "La force du collectif", "https://www.echecs.asso.fr/"],
   ["03", "Top Jeunes", "Former les champions de demain", "https://www.echecs.asso.fr/"],
   ["04", "Nationale I Jeunes", "L’excellence en formation", "https://www.echecs.asso.fr/"],
-];
-
-const partners = [
-  ["Collectivité européenne d’Alsace", "/media/wordpress/2025/08/logo.png"],
-  ["Ville de Bischwiller", "/media/wordpress/2025/08/images-e1754464884418.jpg"],
-  ["Fédération française des échecs", "/media/wordpress/2025/08/Logo_ffe_2023.jpg"],
-  ["Ligue Échecs Grand Est", "/media/wordpress/2025/08/images.png"],
-  ["Crédit Mutuel", "/media/wordpress/2025/09/CM.jpg"],
-  ["Grenke", "/media/wordpress/2025/08/GRENKE_Logo_Blackpng-1.png"],
-  ["ACCIL", "/media/wordpress/2025/08/logo-ACCIL-couleur.png"],
-  ["Simon", "/media/wordpress/2025/08/Logo-Simon-simplifie-vecto.jpg"],
 ];
 
 function formatDate(date: string) {
@@ -135,7 +126,7 @@ export function Committee() {
 
 export function Partners() {
   return (
-    <section className={styles.partners} aria-labelledby="partners-title" data-reveal><SectionTitle eyebrow="07 / NOS SOUTIENS" title="Ils avancent avec nous." /><div className={styles.partnerGrid}>{partners.map(([name, src]) => <div key={name}><Image src={src} alt={name} width={160} height={80} /></div>)}</div></section>
+    <section className={styles.partners} aria-labelledby="partners-title" data-reveal><SectionTitle eyebrow="07 / NOS SOUTIENS" title="Ils avancent avec nous." /><SponsorGrid sponsors={sponsors} /><Link className={styles.outlineButton} href="/partenaires">Voir tous nos partenaires <Arrow /></Link></section>
   );
 }
 

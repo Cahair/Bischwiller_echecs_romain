@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { SitePage } from "@/lib/site-pages";
 import { SiteFooter } from "@/components/layout/site-footer";
+import { SponsorBand } from "@/components/layout/sponsor-band";
+import { SponsorGrid } from "@/components/sponsors/sponsor-grid";
 import styles from "./content-page.module.css";
 
 export function ContentPage({ page }: { page: SitePage }) {
@@ -16,6 +18,11 @@ export function ContentPage({ page }: { page: SitePage }) {
         <div className={styles.sectionHeading}><span>{String(index + 1).padStart(2, "0")}</span><h2>{section.title}</h2></div>
         <div className={styles.sectionBody}>
           {section.text?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          {section.sponsors ? <div className={styles.sponsors}><SponsorGrid sponsors={section.sponsors} /></div> : null}
+          {section.table ? <div className={styles.tableWrap}><table className={styles.table}>
+            <thead><tr>{section.table.headers.map((header) => <th key={header}>{header}</th>)}</tr></thead>
+            <tbody>{section.table.rows.map((row) => <tr key={row.join("|")}>{row.map((cell, cellIndex) => <td key={cellIndex}>{cell}</td>)}</tr>)}</tbody>
+          </table></div> : null}
           {section.bullets ? <ul>{section.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}</ul> : null}
           {section.links ? <div className={styles.links}>{section.links.map((link) => {
             const external = /^(https?:|mailto:)/.test(link.href);
@@ -25,7 +32,7 @@ export function ContentPage({ page }: { page: SitePage }) {
         </div>
       </section>)}</div>
     </div>
-    <section className={styles.nextStep}><span>Une question ?</span><h2>Parlons échecs.</h2><a href="mailto:bischwiller.echecs1981@gmail.com">Écrire au club <b>↗</b></a></section>
+    {page.slug === "partenaires" ? null : <SponsorBand />}
     <SiteFooter />
   </main>;
 }

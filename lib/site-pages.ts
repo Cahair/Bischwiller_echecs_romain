@@ -1,8 +1,12 @@
+import { sponsorGroups, type Sponsor } from "./sponsors";
+
 export type ContentSection = {
   title: string;
   text?: string[];
   bullets?: string[];
   links?: { label: string; href: string }[];
+  table?: { headers: string[]; rows: string[][] };
+  sponsors?: Sponsor[];
 };
 
 export type SitePage = {
@@ -60,6 +64,18 @@ export const sitePages: SitePage[] = [
     intro: "Le club intervient auprès des jeunes pour développer la concentration, la confiance, l’autonomie et le plaisir de réfléchir ensemble.",
     image: "/media/wordpress/2025/12/20251130_140717-1-scaled.jpg",
     sections: [
+      {
+        title: "Horaires des activités — écoles et collèges",
+        table: {
+          headers: ["Établissement", "Horaires", "Activité"],
+          rows: [
+            ["École Weitbruch", "15h45 – 17h00", "Le lundi, CP à CM2"],
+            ["Collège Les Missions Africaines", "14h25 – 16h20", "CM1 et CM2"],
+            ["Collège Les Missions Africaines", "16h25 – 17h20", "Club CM1 à 3ème"],
+            ["Ecole ABCM – Haguenau", "16h30 – 17h30", "Vendredi soir"],
+          ],
+        },
+      },
       { title: "École d’échecs", text: ["Les cours sont organisés par groupes de niveau et permettent d’acquérir les fondamentaux, de progresser tactiquement et de préparer les compétitions."] },
       { title: "Partenariats scolaires", text: ["Le club accompagne les établissements et les équipes engagées dans les compétitions scolaires et universitaires."] },
       { title: "Rejoindre la formation", links: [{ label: "Inscription à l’école d’échecs", href: "/#inscriptions" }, { label: "Consulter les horaires", href: "/horraires" }] },
@@ -69,12 +85,8 @@ export const sitePages: SitePage[] = [
     slug: "partenaires",
     title: "Partenaires",
     kicker: "Ils nous soutiennent",
-    intro: "Le développement du club et de ses actions est rendu possible par la confiance de ses partenaires publics, fédéraux et privés.",
-    sections: [
-      { title: "Partenaires publics", bullets: ["Collectivité européenne d’Alsace", "Ville de Bischwiller", "OSCL", "Crédit Mutuel"] },
-      { title: "Fédérations", bullets: ["Fédération française des échecs", "Ligue Échecs Grand Est", "Comité des Échecs du Bas-Rhin"] },
-      { title: "Partenaires privés", bullets: ["Grenke", "ACCIL", "Simon & Cie"] },
-    ],
+    intro: "Le développement du club et de ses actions est rendu possible par la confiance de ses partenaires publics, fédéraux et privés. Cliquez sur un logo pour découvrir leur site.",
+    sections: sponsorGroups.map(({ title, intro, sponsors }) => ({ title, text: [intro], sponsors })),
   },
   {
     slug: "horraires",
@@ -110,11 +122,49 @@ export const sitePages: SitePage[] = [
     slug: "mentions-legales",
     title: "Mentions légales",
     kicker: "Informations du site",
-    intro: "Informations relatives à l’éditeur et à l’utilisation du site du Cercle d’Échecs de Bischwiller.",
+    intro: "Conformément aux dispositions des articles 6-III et 19 de la loi n°2004-575 du 21 juin 2004 pour la confiance dans l’économie numérique (LCEN), il est porté à la connaissance des utilisateurs du site les présentes mentions légales.",
     sections: [
-      { title: "Éditeur", text: ["Cercle d’Échecs de Bischwiller · Association sportive · 1 rue du Stade, 67240 Bischwiller.", "Contact : bischwiller.echecs1981@gmail.com"] },
-      { title: "Données personnelles", text: ["Ce site ne collecte que les informations nécessaires à son fonctionnement. Les liens d’inscription renvoient vers les services sécurisés de HelloAsso."] },
-      { title: "Crédits", text: ["Les textes, photographies et éléments graphiques sont la propriété du club ou de leurs auteurs respectifs."] },
+      {
+        title: "1. Éditeur du site",
+        bullets: [
+          "Nom : Romain Kantzer",
+          "Statut juridique : Auto-entrepreneur",
+          "Nom du site / projet : Site internet du Cercle d’Échecs de Bischwiller",
+          "Adresse : 1 Rue du Stade, 67240 Bischwiller",
+          "Adresse email : bischwiller.echecs1981@gmail.com",
+          "Responsable de la publication : Romain Kantzer",
+        ],
+      },
+      {
+        title: "2. Hébergement",
+        bullets: [
+          "Hébergeur : Infomaniak",
+          "Adresse de l’hébergeur : Rue Eugène-Marziano 25, 1227 Les Acacias (GE), Suisse",
+        ],
+        links: [{ label: "Site web de l’hébergeur", href: "https://www.infomaniak.com" }],
+      },
+      {
+        title: "3. Propriété intellectuelle",
+        text: [
+          "L’ensemble des contenus du site, y compris les textes, images, graphismes, logo, icônes, sons, logiciels, etc., sont protégés par les lois en vigueur sur la propriété intellectuelle et sont la propriété exclusive de Romain Kantzer, sauf mention contraire.",
+          "Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite sans l’autorisation écrite préalable de Romain Kantzer.",
+        ],
+      },
+      {
+        title: "4. Données personnelles",
+        text: [
+          "Aucune donnée personnelle n’est collectée à l’insu de l’utilisateur. Les informations transmises via les formulaires de contact sont uniquement utilisées pour répondre aux demandes.",
+          "Conformément au Règlement Général sur la Protection des Données (RGPD), vous pouvez exercer vos droits d’accès, de rectification, d’effacement, de limitation ou d’opposition en écrivant à : bischwiller.echecs1981@gmail.com",
+        ],
+      },
+      {
+        title: "5. Cookies",
+        text: ["Le site peut utiliser des cookies pour améliorer l’expérience utilisateur. Vous pouvez à tout moment configurer votre navigateur pour refuser les cookies."],
+      },
+      {
+        title: "6. Responsabilité",
+        text: ["Romain Kantzer ne saurait être tenu pour responsable des erreurs rencontrées sur le site, de problèmes techniques, d’interprétation des informations publiées, ni des conséquences de leur utilisation."],
+      },
     ],
   },
 ];

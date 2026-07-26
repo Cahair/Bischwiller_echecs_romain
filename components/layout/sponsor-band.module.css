@@ -1,0 +1,17 @@
+.band{padding:clamp(50px,8vw,110px) max(24px,calc((100vw - 1240px)/2));color:#fff;background-color:var(--blue);background-image:radial-gradient(900px 520px at 12% -5%,rgb(255 255 255/.2),transparent 55%),repeating-conic-gradient(rgb(255 255 255/.028) 0% 25%,transparent 0% 50%),linear-gradient(165deg,var(--blue-bright),var(--blue));background-size:auto,96px 96px,auto}
+.heading{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:end;margin-bottom:clamp(38px,5vw,60px)}
+.heading>span{grid-column:1/-1;font-size:.68rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.heading h2{margin:0;font-family:var(--font-serif);font-size:clamp(2.8rem,6vw,5rem);font-weight:400;line-height:.95;letter-spacing:-.02em}
+.heading>a{display:flex;align-items:center;gap:18px;padding:15px 26px;color:#fff;background:rgb(255 255 255/.14);border:1px solid rgb(255 255 255/.35);border-radius:999px;box-shadow:var(--edge-light-strong);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);font-size:.74rem;font-weight:700;letter-spacing:.08em;text-decoration:none;white-space:nowrap;transition:transform .2s var(--ease-out),border-color .2s var(--ease-out)}
+.heading>a:hover{transform:translateY(-2px);border-color:rgb(255 255 255/.6)}
+.heading>a b{font-size:1.05rem;transition:transform .2s var(--ease-out)}
+.heading>a:hover b{transform:translateX(3px)}
+.logos{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin:0;padding:0;list-style:none}
+.logos a{display:grid;height:104px;place-items:center;padding:16px;background:rgb(252 251 247/.94);border:1px solid rgb(255 255 255/.6);border-radius:var(--radius-sm);box-shadow:0 10px 26px rgb(11 20 45/.18),var(--edge-light);transition:transform .22s var(--ease-out),box-shadow .22s var(--ease-out)}
+.logos img{max-width:100%;max-height:calc(56px * var(--logo-scale,1));object-fit:contain}
+.logos a:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgb(11 20 45/.28),var(--edge-light)}
+@media(max-width:1100px){.logos{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:900px){.heading{grid-template-columns:1fr}.heading>a{justify-self:start}}
+@media(max-width:700px){.band{padding-right:22px;padding-left:22px}.logos{grid-template-columns:repeat(3,1fr);gap:10px}.logos a{height:86px;padding:12px}.logos img{max-height:calc(46px * var(--logo-scale,1))}}
+@media(max-width:430px){.logos{grid-template-columns:repeat(2,1fr)}}
+@media(prefers-reduced-motion:reduce){.heading>a,.heading>a b,.logos a{transition:none}.heading>a:hover,.logos a:hover{transform:none}}

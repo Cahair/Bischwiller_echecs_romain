@@ -35,6 +35,9 @@
   --glass-milk-bg: rgb(252 251 247 / 94%);
   --glass-milk-border: rgb(255 255 255 / 70%);
   --glass-ink-bg: rgb(13 17 24 / 94%);
+  /* Mobile nav panel: overlays arbitrary page content, so it stays denser than
+     the desktop dropdowns and goes fully opaque when transparency is reduced. */
+  --glass-ink-solid: rgb(11 15 21 / 94%);
   --glass-ink-border: rgb(255 255 255 / 12%);
   --edge-light: inset 0 1px 0 rgb(255 255 255 / 55%);
   --edge-light-strong: inset 0 1px 0 rgb(255 255 255 / 25%);
@@ -60,6 +63,7 @@
     --glass-clear-bg: rgb(15 19 27 / 94%);
     --glass-milk-bg: rgb(252 251 247 / 97%);
     --glass-ink-bg: rgb(13 17 24 / 96%);
+    --glass-ink-solid: rgb(11 15 21 / 100%);
   }
 }
 
@@ -70,6 +74,17 @@
 html {
   background: var(--page-background);
   scroll-behavior: smooth;
+  /* Anchors must not land under the fixed header capsule. */
+  scroll-padding-top: 104px;
+  /* iOS inflates text in landscape without this. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (max-width: 920px) {
+  html {
+    scroll-padding-top: 92px;
+  }
 }
 
 html,
@@ -365,6 +380,47 @@ a {
     top: 27%;
     right: 6%;
     font-size: clamp(1.55rem, 7vw, 1.95rem);
+  }
+
+  .hero__social-link {
+    bottom: max(1rem, 2vh);
+    width: 46px;
+    height: 46px;
+  }
+}
+
+/* Touch: no hover state to reveal the buttons, so give them a permanent
+   glass backing — white icons alone vanish on bright video frames. */
+@media (hover: none) {
+  .hero__social-link {
+    background: rgb(10 14 20 / 34%);
+    border: 1px solid rgb(255 255 255 / 26%);
+    box-shadow: var(--edge-light-strong);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+  }
+}
+
+/* Phones held in landscape: the 640px floor forced the hero to scroll. */
+@media (max-height: 560px) and (orientation: landscape) {
+  .hero {
+    min-height: 0;
+  }
+
+  .hero__title {
+    top: 6%;
+    font-size: clamp(1.6rem, 4.4vh, 2.1rem);
+  }
+
+  .hero__tagline {
+    top: 34%;
+    font-size: clamp(1.3rem, 3.6vh, 1.7rem);
+  }
+
+  .hero__social-link {
+    bottom: 0.6rem;
+    width: 40px;
+    height: 40px;
   }
 }
 

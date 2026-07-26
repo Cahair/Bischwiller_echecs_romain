@@ -1,0 +1,9 @@
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:18px;margin:0;padding:0;list-style:none}
+.card{position:relative;display:grid;height:150px;place-items:center;padding:25px;background:var(--glass-milk-bg);border:1px solid var(--glass-milk-border);border-radius:var(--radius-md);box-shadow:var(--shadow-ambient),var(--edge-light);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);text-decoration:none;transition:transform .22s var(--ease-out),border-color .22s var(--ease-out),box-shadow .22s var(--ease-out)}
+.card img{max-width:100%;max-height:calc(78px * var(--logo-scale,1));object-fit:contain}
+.card b{position:absolute;top:12px;right:14px;color:var(--blue);font-size:.8rem;opacity:0;transition:opacity .22s var(--ease-out),transform .22s var(--ease-out)}
+a.card:hover{transform:translateY(-4px);border-color:rgb(65 101 192/.45);box-shadow:var(--shadow-float),var(--edge-light)}
+a.card:hover b{opacity:1;transform:translate(2px,-2px)}
+@media(max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.grid{grid-template-columns:repeat(2,1fr);gap:12px}.card{height:120px;padding:18px}.card img{max-height:calc(62px * var(--logo-scale,1))}}
+@media(prefers-reduced-motion:reduce){.card,.card b{transition:none}a.card:hover{transform:none}}

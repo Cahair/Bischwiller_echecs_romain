@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "@fontsource/dm-serif-display/400.css";
 import "@fontsource/dm-serif-display/400-italic.css";
 import "@fontsource/yatra-one/400.css";
@@ -27,6 +27,14 @@ export const metadata: Metadata = {
     siteName: "C.E. Bischwiller",
   },
   twitter: { card: "summary_large_image" },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  // Never cap zoom — pinch-to-zoom is an accessibility requirement.
+  maximumScale: 5,
+  themeColor: "#080a0d",
 };
 
 export default function RootLayout({

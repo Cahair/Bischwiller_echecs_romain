@@ -47,7 +47,7 @@ export function InfosPratiquesPage() {
         <p className={styles.email}>{email}</p>
         <div className={styles.cardActions}>
           <a href={`mailto:${email}`}><span>Envoyer un e-mail</span><b>↗</b></a>
-          <a href="https://www.facebook.com/BischwillerEchecs" target="_blank" rel="noreferrer"><span>Facebook</span><b>↗</b></a>
+          <a href="https://www.facebook.com/Cercle.Echecs.Bischwiller/?locale=fr_FR" target="_blank" rel="noreferrer"><span>Facebook</span><b>↗</b></a>
         </div>
       </article>
     </section>

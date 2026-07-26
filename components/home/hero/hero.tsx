@@ -1,4 +1,4 @@
-const FACEBOOK_URL = "https://www.facebook.com/BischwillerEchecs";
+const FACEBOOK_URL = "https://www.facebook.com/Cercle.Echecs.Bischwiller/?locale=fr_FR";
 const CONTACT_EMAIL = "bischwiller.echecs1981@gmail.com";
 
 function FacebookIcon() {

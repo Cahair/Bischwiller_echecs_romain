@@ -29,6 +29,10 @@
 .actions b{color:var(--blue);font-size:1.05rem;transition:transform .2s}
 .actions>a:hover{transform:translateY(-2px);border-color:rgb(65 101 192/.45);box-shadow:0 12px 30px rgb(65 101 192/.14),var(--edge-light)}
 .actions>a:hover b{transform:translateX(3px)}
-@media(max-width:950px){.hero{padding-bottom:130px}.essentials{grid-template-columns:1fr;margin-top:-80px}.actions{grid-template-columns:1fr}}
-@media(max-width:550px){.hero{padding:135px 20px 115px}.hero>a{top:96px}.hero h1{font-size:clamp(2.9rem,13vw,3.6rem)}.essentials{width:calc(100% - 32px);margin-top:-70px;gap:14px}.card{padding:22px}.schedule li{grid-template-columns:1fr;gap:6px}.actions{width:calc(100% - 32px);gap:14px;padding-bottom:80px}}
+/* The breadcrumb joins the flow so the heading sits just under the header
+   instead of below a block of empty padding. */
+/* Stacked single column: the hero overlap dropped the light/dark seam straight
+   through each card's heading, so the cards sit below the hero instead. */
+@media(max-width:950px){.hero{padding:104px 24px 52px}.hero>a{position:static;margin-bottom:20px}.hero h1{margin:14px 0 18px}.essentials{grid-template-columns:1fr;margin-top:24px}.actions{grid-template-columns:1fr}}
+@media(max-width:550px){.hero{padding:96px 20px 44px}.hero>a{margin-bottom:18px;font-size:.62rem}.hero h1{margin:12px 0 14px;font-size:clamp(2.9rem,13vw,3.6rem)}.hero>p{font-size:1rem;line-height:1.65}.essentials{width:calc(100% - 32px);margin-top:20px;gap:14px}.card{padding:20px}.card h2{margin:10px 0 8px;font-size:1.7rem}.card>p{margin-bottom:18px;font-size:.98rem}.schedule{gap:8px;margin-bottom:18px}.schedule li{grid-template-columns:1fr;gap:5px;padding:11px 14px}.cardActions a{padding:11px 16px;font-size:.68rem}.actions{width:calc(100% - 32px);gap:12px;padding-bottom:64px}.actions>a{gap:14px;padding:18px 20px}}
 @media(prefers-reduced-motion:reduce){.hero>a,.cardActions a,.cardActions b,.actions>a,.actions b{transition:none}}
