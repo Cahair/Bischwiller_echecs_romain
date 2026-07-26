@@ -52,7 +52,7 @@ export function ClubIntro() {
   return (
     <section className={styles.intro} aria-labelledby="intro-title" data-reveal>
       <div className={styles.introGrid}>
-        <div className={styles.introTitle}><span className={styles.index}>01 / LE CLUB</span><h2 id="intro-title">Ici, chaque coup<br />construit l’avenir.</h2></div>
+        <div className={styles.introTitle}><span className={styles.index}>02 / LE CLUB</span><h2 id="intro-title">Ici, chaque coup<br />construit l’avenir.</h2></div>
         <div className={styles.introCopy}><p className={styles.lead}>Un club de formation, de compétition et de transmission ouvert à toutes les générations.</p><p>Depuis 1981, Bischwiller réunit celles et ceux qui aiment chercher, progresser et partager. Des premiers déplacements de pièces aux plus grandes compétitions nationales, nous avançons avec la même exigence : jouer ensemble.</p><Link className={styles.outlineButton} href="/le-club">Découvrir notre histoire <Arrow /></Link></div>
       </div>
       <div className={styles.stats}>
@@ -69,7 +69,7 @@ export function LatestNews() {
   const [featured, ...secondary] = articleIndex.slice(0, 3);
   return (
     <section className={styles.news} aria-labelledby="latest-title" data-reveal>
-      <div className={styles.sectionBar}><SectionTitle eyebrow="02 / EN CE MOMENT" title="Dernières nouvelles" /><Link href="/actualites">Toutes les actualités <Arrow /></Link></div>
+      <div className={styles.sectionBar}><SectionTitle eyebrow="01 / EN CE MOMENT" title="Dernières nouvelles" /><Link href="/actualites">Toutes les actualités <Arrow /></Link></div>
       <div className={styles.newsGrid}><NewsCard article={featured} featured /><div className={styles.newsSide}>{secondary.map((article) => <NewsCard article={article} key={article.id} />)}</div></div>
     </section>
   );
@@ -137,5 +137,5 @@ export function Visit() {
 }
 
 export function HomeSections() {
-  return <><ClubIntro /><LatestNews /><Registrations /><Formation /><Teams /><Palmares /><Committee /><Partners /><Visit /></>;
+  return <><LatestNews /><ClubIntro /><Registrations /><Formation /><Teams /><Palmares /><Committee /><Partners /><Visit /></>;
 }
