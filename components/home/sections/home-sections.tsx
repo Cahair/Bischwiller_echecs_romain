@@ -1,9 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import articleIndex from "@/data/generated/article-index.json";
+import generatedArticles from "@/data/generated/article-index.json";
 import { SponsorGrid } from "@/components/sponsors/sponsor-grid";
+import { localArticleIndex, mergeArticles } from "@/lib/articles";
+import { photoFrame } from "@/lib/image-size";
 import { sponsors } from "@/lib/sponsors";
 import styles from "./home-sections.module.css";
+
+const articleIndex = mergeArticles(generatedArticles, localArticleIndex);
 
 type Article = (typeof articleIndex)[number];
 
@@ -12,11 +16,25 @@ const helloAsso = {
   school: "https://www.helloasso.com/associations/cercle-d-echecs-de-bischwiller/adhesions/inscription-siason-2025-2026",
 };
 
+/** Bandeau d’entrée de site : l’événement du moment, avant même les actualités. */
+const spotlight = {
+  slug: "open-international-de-bischwiller-2026",
+  eyebrow: "À LA UNE",
+  title: "Open International de Bischwiller",
+  dates: "Jeudi 27 → dimanche 30 août 2026",
+  detail: "7 rondes, trois opens homologués, 4 000 € de prix garantis, à la M.A.C. de Bischwiller.",
+  registration: "https://www.helloasso.com/associations/cercle-d-echecs-de-bischwiller/evenements/open-international-de-bischwiller",
+  qr: "/media/evenements/qr-open-international-2026.png",
+};
+
+const formationPhoto = "/media/wordpress/2026/02/20260214_133117-1-scaled.jpg";
+const committeePhoto = "/media/wordpress/2025/09/4U4A9864-scaled.jpg";
+
 const teams = [
   ["01", "Nationale II", "L’équipe fanion du club", "https://echecs.asso.fr/EquipesCalendrier.aspx?Ref=878&Saison=3000"],
   ["02", "Nationale IV", "La force du collectif", "https://www.echecs.asso.fr/"],
   ["03", "Top Jeunes", "Former les champions de demain", "https://www.echecs.asso.fr/"],
-  ["04", "Nationale I Jeunes", "L’excellence en formation", "https://www.echecs.asso.fr/"],
+  ["04", "Nationale II Jeunes", "L’excellence en formation", "https://www.echecs.asso.fr/"],
 ];
 
 function formatDate(date: string) {
@@ -65,6 +83,29 @@ export function ClubIntro() {
   );
 }
 
+export function Spotlight() {
+  return (
+    <section className={styles.spotlight} aria-labelledby="spotlight-title" data-reveal>
+      <div className={styles.spotlightCard}>
+        <div className={styles.spotlightCopy}>
+          <span className={styles.spotlightEyebrow}>{spotlight.eyebrow}</span>
+          <h2 id="spotlight-title">{spotlight.title}</h2>
+          <p className={styles.spotlightDates}>{spotlight.dates}</p>
+          <p className={styles.spotlightDetail}>{spotlight.detail}</p>
+          <div className={styles.spotlightActions}>
+            <a className={styles.lightButton} href={spotlight.registration} target="_blank" rel="noreferrer">S’inscrire sur HelloAsso <Arrow /></a>
+            <Link className={styles.spotlightLink} href={`/actualites/${spotlight.slug}`}>Tous les détails <Arrow /></Link>
+          </div>
+        </div>
+        <a className={styles.spotlightQr} href={spotlight.registration} target="_blank" rel="noreferrer">
+          <Image src={spotlight.qr} alt="QR code d’inscription à l’Open International de Bischwiller sur HelloAsso" width={424} height={424} quality={90} sizes="180px" />
+          <span>Scannez pour vous inscrire</span>
+        </a>
+      </div>
+    </section>
+  );
+}
+
 export function LatestNews() {
   const [featured, ...secondary] = articleIndex.slice(0, 3);
   return (
@@ -90,7 +131,7 @@ export function Registrations() {
 export function Formation() {
   return (
     <section className={styles.formation} data-reveal>
-      <div className={styles.formationImage}><Image src="/media/wordpress/2025/06/IMG-20241130-WA0001-002.webp" alt="Les jeunes joueurs du Cercle d’Échecs de Bischwiller" fill quality={90} sizes="(max-width: 850px) 100vw, 58vw" /></div>
+      <div className={styles.formationImage} style={photoFrame(formationPhoto)}><Image src={formationPhoto} alt="Les jeunes joueurs U08 et U10 du club et leurs accompagnateurs au championnat d’Alsace" fill quality={90} sizes="(max-width: 1000px) 100vw, 58vw" /></div>
       <div className={styles.formationCopy}><span className={styles.index}>04 / TRANSMETTRE</span><h2>Le talent se travaille en équipe.</h2><p>Notre école accompagne chaque jeune à son rythme, avec des formateurs expérimentés et un parcours pensé pour durer.</p><div className={styles.labels}><Image src="/media/wordpress/2025/09/club_formateur-removebg-preview.png" alt="Label Club Formateur" width={120} height={145} /><Image src="/media/wordpress/2025/09/club_feminin-removebg-preview.png" alt="Label Club Féminin" width={105} height={145} /></div><Link className={styles.outlineButton} href="/scolaire">Découvrir la formation <Arrow /></Link></div>
     </section>
   );
@@ -119,7 +160,7 @@ export function Committee() {
   return (
     <section className={styles.committee} aria-labelledby="committee-title" data-reveal>
       <div className={styles.committeeCopy}><span className={styles.index}>06 / LE COLLECTIF</span><h2 id="committee-title">Le club vit grâce à eux.</h2><p>Christelle Schmidt, Roland Reeb, Yannis Savignon, Danielle Pivarot, Claudia Fischer et Ayline Klein œuvrent toute l’année au développement du club.</p><Link className={styles.outlineButton} href="/le-club">Rencontrer le club <Arrow /></Link></div>
-      <div className={styles.committeeImage}><Image src="/media/wordpress/2025/09/4U4A9864-scaled.jpg" alt="Le comité du Cercle d’Échecs de Bischwiller" fill quality={90} sizes="(max-width: 850px) 100vw, 58vw" /><small>Photo Alain Hulot</small></div>
+      <div className={styles.committeeImage} style={photoFrame(committeePhoto)}><Image src={committeePhoto} alt="Le comité du Cercle d’Échecs de Bischwiller" fill quality={90} sizes="(max-width: 1000px) 100vw, 60vw" /><small>Photo Alain Hulot</small></div>
     </section>
   );
 }
@@ -137,5 +178,5 @@ export function Visit() {
 }
 
 export function HomeSections() {
-  return <><LatestNews /><ClubIntro /><Registrations /><Formation /><Teams /><Palmares /><Committee /><Partners /><Visit /></>;
+  return <><Spotlight /><LatestNews /><ClubIntro /><Registrations /><Formation /><Teams /><Palmares /><Committee /><Partners /><Visit /></>;
 }
