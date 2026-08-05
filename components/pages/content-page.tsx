@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { SitePage } from "@/lib/site-pages";
+import { photoFrame } from "@/lib/image-size";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SponsorBand } from "@/components/layout/sponsor-band";
 import { SponsorGrid } from "@/components/sponsors/sponsor-grid";
@@ -10,7 +11,7 @@ export function ContentPage({ page }: { page: SitePage }) {
   return <main className={styles.page}>
     <header className={`${styles.hero} ${page.image ? "" : styles.heroNoImage}`}>
       <div className={styles.heroCopy}><Link href="/">Accueil</Link><span className={styles.kicker}>{page.kicker}</span><h1>{page.title}</h1><p>{page.intro}</p><div className={styles.heroMeta}><span>{String(page.sections.length).padStart(2, "0")} chapitres</span><span>C.E.B. / 1981—2026</span></div></div>
-      <div className={styles.heroVisual}>{page.image ? <Image src={page.image} alt="" fill priority quality={90} sizes="(max-width: 800px) 100vw, 50vw" /> : <div className={styles.chessPattern} aria-hidden="true" />}</div>
+      <div className={styles.heroVisual} style={page.image ? photoFrame(page.image) : undefined}>{page.image ? <Image src={page.image} alt="" fill priority quality={90} sizes="(max-width: 900px) 100vw, 50vw" /> : <div className={styles.chessPattern} aria-hidden="true" />}</div>
     </header>
     <div className={styles.content}>
       <aside><span>Sur cette page</span><nav>{page.sections.map((section, index) => <a href={`#section-${index + 1}`} key={section.title}><b>{String(index + 1).padStart(2, "0")}</b>{section.title}</a>)}</nav></aside>

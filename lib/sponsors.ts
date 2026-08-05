@@ -40,7 +40,7 @@ export const sponsorGroups: SponsorGroup[] = [
     sponsors: [
       { name: "Crédit Mutuel", logo: "/media/sponsors/CM.jpg", href: "https://www.creditmutuel.fr/fr/particuliers.html", scale: 1.15 },
       { name: "Grenke", logo: "/media/sponsors/GRENKE_Logo_Blackpng-1.png", href: "https://partner.grenkeonline.com/fr-FR", scale: 0.55 },
-      { name: "ACCIL", logo: "/media/sponsors/logo-ACCIL-couleur.png", scale: 1.3 },
+      { name: "ACCIL", logo: "/media/sponsors/logo-ACCIL-couleur.png", href: "https://accil-sas.fr/", scale: 1.3 },
       { name: "Simon S.A.S.", logo: "/media/sponsors/Logo-Simon-simplifie-vecto.jpg", href: "https://www.simon-et-cie.com/", scale: 0.9 },
     ],
   },
