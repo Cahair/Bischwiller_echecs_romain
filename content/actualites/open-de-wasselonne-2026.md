@@ -33,3 +33,7 @@ Mais il faut déjà penser à la suite :
 - Et bien entendu, **[notre open du 27 au 30 août](/actualites/open-international-de-bischwiller-2026)**
 
 Inscrivez-vous !!!!
+
+[![QR code d’inscription à l’Open International de Bischwiller sur HelloAsso](/media/evenements/qr-open-international-2026.png)](https://www.helloasso.com/associations/cercle-d-echecs-de-bischwiller/evenements/open-international-de-bischwiller)
+
+Lien direct : [s’inscrire à l’Open International de Bischwiller](https://www.helloasso.com/associations/cercle-d-echecs-de-bischwiller/evenements/open-international-de-bischwiller)
