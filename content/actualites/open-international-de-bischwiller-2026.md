@@ -3,20 +3,21 @@ id: 20260804
 title: "Open International de Bischwiller — du 27 au 30 août 2026"
 slug: "open-international-de-bischwiller-2026"
 publishedAt: "2026-08-04 09:00:00"
-modifiedAt: "2026-08-04 09:00:00"
+modifiedAt: "2026-08-05 09:00:00"
 author: "Cercle d’Échecs de Bischwiller"
 categories: ["Tournois annoncés","Evénements"]
 categorySlugs: ["annonces-de-tournois","evenements"]
 tags: ["Open de Bischwiller","open"]
 excerpt: "Quatre jours, sept rondes et trois opens homologués à la M.A.C. pour clore l’été. Inscriptions en ligne sur HelloAsso."
-featuredImage: ""
+featuredImage: "/media/evenements/qr-open-international-2026.png"
+featuredImageFit: "contain"
 originalUrl: ""
 ---
 Le Cercle d’Échecs de Bischwiller organise son **Open International du jeudi 27 au dimanche 30 août 2026**, à la Maison des Associations et de la Culture, 1 rue du Stade, 67240 Bischwiller. Quatre jours, sept rondes et trois tournois homologués pour refermer l’été et lancer la nouvelle saison.
 
 ## S’inscrire
 
-Les inscriptions se font uniquement en ligne, sur HelloAsso. **Les tarifs augmentent à partir du 20 août** : mieux vaut ne pas attendre.
+Les inscriptions se font uniquement en ligne, sur HelloAsso : il n’y a pas d’inscription sur place. **Les tarifs augmentent à partir du 20 août** : mieux vaut ne pas attendre.
 
 [![QR code d’inscription à l’Open International de Bischwiller sur HelloAsso](/media/evenements/qr-open-international-2026.png)](https://www.helloasso.com/associations/cercle-d-echecs-de-bischwiller/evenements/open-international-de-bischwiller)
 
@@ -45,14 +46,28 @@ Lien direct : [s’inscrire à l’Open International de Bischwiller](https://ww
 
 | Catégorie | Jusqu’au 19 août | À partir du 20 août |
 | --- | --- | --- |
-| Adultes | 46 € | 50 € |
-| Moins de 18 ans | 23 € | 25 € |
+| Adulte, 21 ans et plus | 46 € | 50 € |
+| Jeune, moins de 21 ans | 23 € | 25 € |
+| Maître FIDE, 21 ans et plus | 23 € | 25 € |
+| Maître FIDE, moins de 21 ans | 11,50 € | 15 € |
+| Grand maître et maître international | Gratuit | Gratuit |
 
-Gratuit pour les grands maîtres et maîtres internationaux, demi-tarif pour les maîtres FIDE.
+Sur HelloAsso, le tarif jeune de l’Open A est affiché à 26 € à partir du 20 août.
 
 ## Prix
 
-**4 000 € de prix garantis** pour 150 participants, dont **1 000 € au vainqueur**.
+Les prix sont garantis à partir de 150 participants.
+
+## Restauration
+
+Un repas est proposé chaque jour, à **12 €**, uniquement sur réservation au moment de l’inscription.
+
+| Jour | Menu |
+| --- | --- |
+| Jeudi 27 août | Quiche, salade et dessert |
+| Vendredi 28 août | Pâtes bolognaise et dessert |
+| Samedi 29 août | Brochette de poulet, crudités et dessert |
+| Dimanche 30 août | Chili con carne et dessert |
 
 ## Renseignements
 

@@ -22,7 +22,7 @@ const spotlight = {
   eyebrow: "À LA UNE",
   title: "Open International de Bischwiller",
   dates: "Jeudi 27 → dimanche 30 août 2026",
-  detail: "7 rondes, trois opens homologués, 4 000 € de prix garantis, à la M.A.C. de Bischwiller.",
+  detail: "7 rondes, trois opens homologués, prix garantis à partir de 150 participants, à la M.A.C. de Bischwiller.",
   registration: "https://www.helloasso.com/associations/cercle-d-echecs-de-bischwiller/evenements/open-international-de-bischwiller",
   qr: "/media/evenements/qr-open-international-2026.png",
 };
@@ -47,9 +47,10 @@ function Arrow() {
 }
 
 function NewsCard({ article, featured = false }: { article: Article; featured?: boolean }) {
+  const contain = "featuredImageFit" in article && article.featuredImageFit === "contain";
   return (
     <article className={featured ? styles.newsFeatured : styles.newsCard}>
-      <Link className={styles.newsImage} href={`/actualites/${article.slug}`}>
+      <Link className={contain ? `${styles.newsImage} ${styles.newsImageContain}` : styles.newsImage} href={`/actualites/${article.slug}`}>
         {article.featuredImage ? <Image src={article.featuredImage} alt="" fill quality={featured ? 90 : 75} sizes={featured ? "(max-width: 1000px) 100vw, 66vw" : "(max-width: 700px) 100vw, (max-width: 1000px) 50vw, 30vw"} /> : <span className={styles.imageFallback}>C.E.B.</span>}
       </Link>
       <div className={styles.newsCopy}>

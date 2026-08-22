@@ -22,6 +22,8 @@ export type ArticleSummary = {
   categorySlugs: string[];
   tags: string[];
   featuredImage: string | null;
+  /** `contain` : l’image est montrée entière dans les cartes (QR codes, affiches). */
+  featuredImageFit: "contain" | null;
   originalUrl: string;
 };
 
@@ -64,6 +66,7 @@ function parseArticle(fileName: string): Article {
     categorySlugs: strings(front.categorySlugs),
     tags: strings(front.tags),
     featuredImage: front.featuredImage ? String(front.featuredImage) : null,
+    featuredImageFit: front.featuredImageFit === "contain" ? "contain" : null,
     originalUrl: String(front.originalUrl ?? ""),
     contentMarkdown: raw.slice(header[0].length).trim(),
   };

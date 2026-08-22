@@ -14,7 +14,7 @@
 .card:hover{box-shadow:var(--shadow-float),var(--edge-light);transform:translateY(-5px)}
 .image{position:relative;display:block;height:270px;overflow:hidden;color:var(--ink);background:#d7d6d0;text-decoration:none}
 .image:empty:after{display:grid;height:100%;place-items:center;font-family:var(--font-serif);font-size:3rem;content:"C.E.B."}
-.image img{object-fit:cover;filter:var(--photo-natural);transition:transform .5s ease}
+.image img{object-fit:cover;filter:var(--photo-natural);transition:transform .5s ease}.imageContain img{object-fit:contain;padding:14px}
 .card:hover .image img{transform:scale(1.03)}
 .cardBody{display:flex;min-height:265px;flex-direction:column;padding:30px}
 .meta{align-self:flex-start;padding:6px 12px;color:var(--blue);background:rgb(65 101 192/.1);border:1px solid rgb(65 101 192/.18);border-radius:999px;font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
