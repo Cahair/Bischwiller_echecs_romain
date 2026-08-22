@@ -12,8 +12,8 @@ const articleIndex = mergeArticles(generatedArticles, localArticleIndex);
 type Article = (typeof articleIndex)[number];
 
 const helloAsso = {
-  adults: "https://www.helloasso.com/associations/cercle-d-echecs-de-bischwiller/adhesions/adultes-adhesion-saison-2025-2026",
-  school: "https://www.helloasso.com/associations/cercle-d-echecs-de-bischwiller/adhesions/inscription-siason-2025-2026",
+  adults: "https://www.helloasso.com/associations/cercle-d-echecs-de-bischwiller/adhesions/adultes-adhesion-saison-2026-2027",
+  school: "https://www.helloasso.com/associations/cercle-d-echecs-de-bischwiller/adhesions/ecole-d-echecs-adhesion-saison-2026-2027",
 };
 
 /** Bandeau d’entrée de site : l’événement du moment, avant même les actualités. */
