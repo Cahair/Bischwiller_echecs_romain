@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import generatedArticles from "@/data/generated/article-index.json";
-import { localArticleIndex, mergeArticles } from "@/lib/articles";
+import { getLocalArticleIndex, mergeArticles } from "@/lib/articles";
 import { FilterRail } from "@/components/articles/filter-rail";
 import { SiteFooter } from "@/components/layout/site-footer";
 import styles from "@/components/articles/articles.module.css";
@@ -13,7 +13,7 @@ type Search = Promise<{ page?: string; categorie?: string }>;
 
 export default async function NewsPage({ searchParams }: { searchParams: Search }) {
   const query = await searchParams;
-  const articles = mergeArticles(generatedArticles, localArticleIndex);
+  const articles = mergeArticles(generatedArticles, getLocalArticleIndex());
   const categories = Array.from(new Set(articles.flatMap((article) => article.categories))).sort();
   const selected = query.categorie ?? "";
   const filtered = selected ? articles.filter((article) => article.categories.includes(selected)) : articles;

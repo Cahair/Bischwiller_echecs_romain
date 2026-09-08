@@ -51,6 +51,15 @@ export function photoSize(src: string): [number, number] | null {
   return size;
 }
 
+/**
+ * Oublie la taille mémorisée d’un chemin : une photo demandée avant d’exister
+ * (aperçu de l’espace admin) reste sinon marquée introuvable jusqu’au
+ * redémarrage du serveur.
+ */
+export function forgetPhotoSize(src: string): void {
+  sizes.delete(src);
+}
+
 /** Ratio natif d’une photo servie depuis /public, au format CSS `aspect-ratio`. */
 export function photoRatio(src: string): string {
   const size = photoSize(src);

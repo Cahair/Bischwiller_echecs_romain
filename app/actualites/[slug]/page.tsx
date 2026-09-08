@@ -7,19 +7,20 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import generatedArticles from "@/data/generated/articles.json";
 import { SiteFooter } from "@/components/layout/site-footer";
-import { flowingText, localArticles, mergeArticles } from "@/lib/articles";
+import { flowingText, getLocalArticles, mergeArticles } from "@/lib/articles";
 import { fullSizePhoto, photoFrame, photoSize } from "@/lib/image-size";
 import styles from "@/components/articles/articles.module.css";
 
-const articles = mergeArticles(generatedArticles, localArticles);
+// Relu à chaque rendu : l’espace admin écrit dans content/actualites/ à chaud.
+const allArticles = () => mergeArticles(generatedArticles, getLocalArticles());
 
-export function generateStaticParams() { return articles.map(({ slug }) => ({ slug })); }
+export function generateStaticParams() { return allArticles().map(({ slug }) => ({ slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
-  const { slug } = await params; const article = articles.find((item) => item.slug === slug);
+  const { slug } = await params; const article = allArticles().find((item) => item.slug === slug);
   return article ? { title: `${article.title} — Cercle d'Échecs de Bischwiller`, description: article.excerpt || undefined } : {};
 }
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params; const article = articles.find((item) => item.slug === slug); if (!article) notFound();
+  const { slug } = await params; const article = allArticles().find((item) => item.slug === slug); if (!article) notFound();
   const date = new Date(article.publishedAt.replace(" ", "T") + "Z").toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
   const cover = article.featuredImage || null;
   return <main className={styles.page}><header className={`${styles.articleHero} ${cover ? styles.heroSplit : ""}`}>{cover && <div className={styles.heroBackdrop} aria-hidden="true"><Image src={cover} alt="" fill quality={75} sizes="220px" /></div>}<div className={styles.shade} /><div className={styles.articleInner}><div className={styles.articleHeading}><span className={styles.eyebrow}>{article.categories.join(" · ") || "Actualités"}</span><h1>{article.title}</h1><p>{date} · {article.author}</p></div>{cover && <div className={styles.heroPhoto} style={photoFrame(cover)}><Image src={cover} alt="" fill priority quality={90} sizes="(max-width: 900px) 100vw, 620px" /></div>}</div></header><article className={styles.prose}><Link className={styles.back} href="/actualites">← Toutes les actualités</Link><ReactMarkdown remarkPlugins={[remarkGfm]} components={{ a: ({ href, children, ...props }) => { const isDocument = href ? /\.(pdf|docx?|xlsx?|pptx?|odt|ods|zip)([?#]|$)/i.test(href) : false; return <a href={href} target={isDocument ? "_blank" : undefined} rel={isDocument ? "noreferrer" : undefined} {...props}>{children}</a>; }, img: ({ src, alt, title, ...props }) => {

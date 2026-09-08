@@ -11,7 +11,9 @@
     "wordpress:media": "node scripts/wordpress/download-media.mjs",
     "wordpress:content": "node scripts/wordpress/generate-content.mjs",
     "wordpress:import": "pnpm site:inventory && pnpm wordpress:audit && pnpm wordpress:media && pnpm wordpress:content",
-    "site:inventory": "node scripts/wordpress/inventory-site.mjs"
+    "site:inventory": "node scripts/wordpress/inventory-site.mjs",
+    "admin:user": "node scripts/admin/user.mjs",
+    "admin:secret": "node scripts/admin/user.mjs secret"
   },
   "dependencies": {
     "@fontsource/dm-serif-display": "^5.2.8",

@@ -1,5 +1,7 @@
 import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
+import { cache } from "react";
+import { flowingText, slugify } from "@/lib/markdown";
 
 /**
  * Les articles de `content/articles/` proviennent de l’export WordPress et sont
@@ -7,7 +9,9 @@ import path from "node:path";
  * refonte vivent donc à part, dans `content/actualites/`, et sont fusionnés ici
  * avec l’export au moment du rendu.
  */
-const LOCAL_DIR = path.join(process.cwd(), "content", "actualites");
+export const LOCAL_ARTICLES_DIR = path.join(process.cwd(), "content", "actualites");
+
+export { flowingText, slugify };
 
 export type ArticleSummary = {
   id: number;
@@ -33,8 +37,16 @@ function strings(value: unknown): string[] {
   return Array.isArray(value) ? value.map(String) : [];
 }
 
-function parseArticle(fileName: string): Article {
-  const raw = readFileSync(path.join(LOCAL_DIR, fileName), "utf8").replace(/\r\n/g, "\n");
+export function listLocalArticleFiles(): string[] {
+  try {
+    return readdirSync(LOCAL_ARTICLES_DIR).filter((name) => name.endsWith(".md"));
+  } catch {
+    return []; // Aucun article maison pour l’instant.
+  }
+}
+
+export function parseLocalArticle(fileName: string): Article {
+  const raw = readFileSync(path.join(LOCAL_ARTICLES_DIR, fileName), "utf8").replace(/\r\n/g, "\n");
   const header = /^---\n([\s\S]*?)\n---\n?/.exec(raw);
   if (!header) throw new Error(`Article local sans en-tête : ${fileName}`);
 
@@ -57,7 +69,8 @@ function parseArticle(fileName: string): Article {
     id: Number(front.id ?? 0),
     slug,
     title: String(front.title ?? slug),
-    status: "publish",
+    // Les fichiers écrits avant l’espace admin n’ont pas de `status` : ils sont publiés.
+    status: front.status === "draft" ? "draft" : "publish",
     author: String(front.author ?? "Cercle d’Échecs de Bischwiller"),
     publishedAt,
     modifiedAt: String(front.modifiedAt ?? publishedAt),
@@ -72,59 +85,26 @@ function parseArticle(fileName: string): Article {
   };
 }
 
-function readLocalArticles(): Article[] {
-  let files: string[] = [];
-  try {
-    files = readdirSync(LOCAL_DIR).filter((name) => name.endsWith(".md"));
-  } catch {
-    return []; // Aucun article maison pour l’instant.
-  }
-  return files.map(parseArticle);
+/** Tous les articles maison, brouillons compris : réservé à l’espace admin. */
+export function readAllLocalArticles(): Article[] {
+  return listLocalArticleFiles().map(parseLocalArticle);
 }
-
-export const localArticles: Article[] = readLocalArticles();
-
-export const localArticleIndex: ArticleSummary[] = localArticles.map(
-  ({ contentMarkdown, ...summary }) => {
-    void contentMarkdown;
-    return summary;
-  },
-);
-
-const HARD_BREAK = /(?: {2,}|\\)$/;
-const ENDS_SENTENCE = /[.!?:;»)\]]$/;
-const BLOCK_LINE = /^\s*(?:[-*+>#|]|\d+[.)])/;
 
 /**
- * Beaucoup d’articles ont été collés dans WordPress depuis un traitement de
- * texte : ils arrivent coupés tous les cent caractères, en plein milieu des
- * phrases. Ces retours forcés empêchent toute justification — une ligne suivie
- * d’un `<br>` est une fin de paragraphe, que le navigateur laisse au fer à
- * gauche — et hachent la lecture sur mobile. On ne recolle que les lignes
- * manifestement tronquées (longues et sans ponctuation finale) : listes de
- * résultats, notations de parties et tableaux gardent leurs retours.
+ * Le disque est relu à chaque rendu — et non une fois au démarrage — parce que
+ * l’espace admin écrit dans `content/actualites/` pendant que le serveur tourne.
+ * `cache()` limite la relecture à une fois par requête.
  */
-export function flowingText(markdown: string): string {
-  const flowed: string[] = [];
-  let inCodeFence = false;
-  for (const line of markdown.split("\n")) {
-    if (/^\s*(?:```|~~~)/.test(line)) inCodeFence = !inCodeFence;
-    const previous = flowed.at(-1);
-    const text = previous === undefined ? "" : previous.replace(/\s+$/, "");
-    const joinable =
-      !inCodeFence &&
-      previous !== undefined &&
-      HARD_BREAK.test(previous) &&
-      text.length >= 60 &&
-      !ENDS_SENTENCE.test(text) &&
-      !BLOCK_LINE.test(text) &&
-      line.trim() !== "" &&
-      !BLOCK_LINE.test(line);
-    if (joinable) flowed[flowed.length - 1] = `${text} ${line.trimStart()}`;
-    else flowed.push(line);
-  }
-  return flowed.join("\n");
-}
+export const getLocalArticles = cache((): Article[] =>
+  readAllLocalArticles().filter((article) => article.status === "publish"),
+);
+
+export const getLocalArticleIndex = cache((): ArticleSummary[] =>
+  getLocalArticles().map(({ contentMarkdown, ...summary }) => {
+    void contentMarkdown;
+    return summary;
+  }),
+);
 
 /** Fusionne export WordPress et articles maison, du plus récent au plus ancien. */
 export function mergeArticles<A extends { publishedAt: string }, B extends { publishedAt: string }>(

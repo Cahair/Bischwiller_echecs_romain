@@ -20,3 +20,6 @@ next-env.d.ts
 
 # Private WordPress source exports
 /data/wordpress/*.xml
+
+# Comptes de l’espace admin : condensés de mots de passe, jamais versionnés
+/data/admin

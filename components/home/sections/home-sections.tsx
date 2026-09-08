@@ -2,14 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import generatedArticles from "@/data/generated/article-index.json";
 import { SponsorGrid } from "@/components/sponsors/sponsor-grid";
-import { localArticleIndex, mergeArticles } from "@/lib/articles";
+import { getLocalArticleIndex, mergeArticles } from "@/lib/articles";
 import { photoFrame } from "@/lib/image-size";
 import { sponsors } from "@/lib/sponsors";
 import styles from "./home-sections.module.css";
 
-const articleIndex = mergeArticles(generatedArticles, localArticleIndex);
+// Relu à chaque rendu : l’espace admin écrit dans content/actualites/ à chaud.
+const articleIndex = () => mergeArticles(generatedArticles, getLocalArticleIndex());
 
-type Article = (typeof articleIndex)[number];
+type Article = ReturnType<typeof articleIndex>[number];
 
 const helloAsso = {
   adults: "https://www.helloasso.com/associations/cercle-d-echecs-de-bischwiller/adhesions/adultes-adhesion-saison-2026-2027",
@@ -108,7 +109,7 @@ export function Spotlight() {
 }
 
 export function LatestNews() {
-  const [featured, ...secondary] = articleIndex.slice(0, 3);
+  const [featured, ...secondary] = articleIndex().slice(0, 3);
   return (
     <section className={styles.news} aria-labelledby="latest-title" data-reveal>
       <div className={styles.sectionBar}><SectionTitle eyebrow="01 / EN CE MOMENT" title="Dernières nouvelles" /><Link href="/actualites">Toutes les actualités <Arrow /></Link></div>

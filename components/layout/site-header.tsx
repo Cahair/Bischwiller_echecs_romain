@@ -49,6 +49,10 @@ export function SiteHeader() {
   const visible = !isHome || scrolled || menuOpen;
   const isActive = (href: string) => pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
 
+  // L’espace admin porte sa propre barre : la capsule flottante du site, fixée
+  // au-dessus de tout, viendrait recouvrir l’éditeur.
+  if (pathname === "/admin" || pathname.startsWith("/admin/")) return null;
+
   return (
     <>
       {/* Outside <header>: its transform would make it the containing block for
