@@ -27,6 +27,11 @@ export default async function AtelierLayout({ children }: { children: ReactNode 
           </span>
         </Link>
         <nav className={styles.barNav} aria-label="Espace admin">
+          {session.role === "admin" ? (
+            <Link className={styles.barLink} href="/admin/comptes">
+              <Icon name="users" /> Comptes
+            </Link>
+          ) : null}
           <a className={styles.barLink} href="/" target="_blank" rel="noreferrer">
             Voir le site <Icon name="external" />
           </a>

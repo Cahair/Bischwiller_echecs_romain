@@ -223,6 +223,34 @@ button.barLink{padding:0;background:none;border:0;font-family:inherit;cursor:poi
 .paginationInfo{color:var(--text-body);font-weight:600}
 .empty{padding:48px 24px;color:var(--text-body);text-align:center;background:#fff;border:2px dashed #d3d7de;border-radius:20px}
 
+/* Comptes et liens d’accès */
+.inviteForm{max-width:860px;padding:24px clamp(18px,3vw,32px) 26px;background:#fff;border:1px solid var(--line);border-radius:20px}
+.roles{margin:0 0 22px;padding:0;border:0}
+.roles legend{margin-bottom:10px;padding:0;font-weight:700}
+.roleOption{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;cursor:pointer}
+.roleOption input{flex:none;width:22px;height:22px;margin:2px 0 0;accent-color:var(--blue)}
+.linkPanel{max-width:860px;margin:0 0 20px;padding:20px 22px;background:#e9f6ee;border:2px solid #9fd3b1;border-radius:18px}
+.linkPanelTitle{display:flex;align-items:center;gap:8px;margin:0 0 12px;color:#16492d;font-size:1.1rem;font-weight:800}
+.linkField{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9rem}
+.linkActions{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 10px}
+.linkNote{margin:0;color:#24583a;font-size:.95rem}
+.accountList{display:flex;flex-direction:column;gap:8px;max-width:860px;margin:0;padding:0;list-style:none}
+.accountRow{display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px;padding:14px 16px;background:#fff;border:1px solid var(--line);border-radius:16px}
+.accountMain{display:flex;flex:1 1 260px;flex-direction:column;gap:2px;min-width:0}
+.accountName{font-size:1.08rem;font-weight:700}
+.accountMeta{color:var(--muted);font-size:.92rem}
+.roleAdmin{color:var(--blue);font-weight:700}
+.roleWriter{color:var(--text-body);font-weight:600}
+.accountActions{display:flex;flex-wrap:wrap;gap:8px}
+.accountWide{flex-basis:100%}
+.accountWide .linkPanel,.error.accountWide{margin:0}
+.identity{display:flex;flex-direction:column;gap:2px;margin:0 0 22px;padding:14px 16px;background:var(--paper);border-radius:14px}
+.identity span{color:var(--muted);font-size:.9rem;font-weight:600}
+.identity strong{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:1.3rem}
+.identity small{color:var(--text-body);font-size:.9rem}
+.accessHint{margin:10px 0 20px}
+.loginCard>.loginHelp{margin:20px 0 0;font-size:.95rem}
+
 @media(max-width:1000px){.mdSplit{grid-template-columns:1fr}.mdPreview{position:static;max-height:none}}
 @media(max-width:760px){
 .main{padding-top:22px}

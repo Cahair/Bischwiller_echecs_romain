@@ -10,6 +10,10 @@
  * Les comptes vivent dans `data/admin/users.json`, hors du dépôt. Le mot de
  * passe n'y figure jamais : seul son condensé scrypt, au format
  * `scrypt:<sel hex>:<empreinte hex>` que relit `lib/admin/users.ts`.
+ *
+ * Un compte créé ici est administrateur. Les autres membres s'invitent depuis
+ * la page « Comptes » de l'espace admin : ils reçoivent un lien où ils
+ * choisissent eux-mêmes leur mot de passe.
  */
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
@@ -69,7 +73,7 @@ if (command === "secret") {
 } else if (command === "lister") {
   const users = readUsers();
   if (users.length === 0) console.log("Aucun compte. Créez-en un avec : pnpm admin:user ajouter <identifiant> \"<Nom>\"");
-  for (const user of users) console.log(`${user.login.padEnd(16)} ${user.name}`);
+  for (const user of users) console.log(`${user.login.padEnd(16)} ${(user.role === "redacteur" ? "rédacteur" : "admin").padEnd(10)} ${user.name}`);
 } else if (command === "ajouter") {
   if (!login) fail('Usage : pnpm admin:user ajouter <identifiant> "<Nom affiché>"');
   const identifier = login.trim().toLowerCase();
@@ -87,7 +91,13 @@ if (command === "secret") {
 
   const users = readUsers();
   const existing = users.findIndex((user) => user.login === identifier);
-  const record = { login: identifier, name, passwordHash: hashPassword(password) };
+  // Un compte existant garde son rôle, et son nom si aucun n'est donné.
+  const record = {
+    login: identifier,
+    name: rest.length > 0 ? name : (users[existing]?.name ?? name),
+    passwordHash: hashPassword(password),
+    role: users[existing]?.role ?? "admin",
+  };
   if (existing >= 0) users[existing] = record;
   else users.push(record);
   writeUsers(users);

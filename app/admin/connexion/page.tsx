@@ -14,7 +14,12 @@ export default async function SignInPage() {
         <h1>Espace admin</h1>
         <p>Cercle d’Échecs de Bischwiller</p>
         {hasAccounts ? (
-          <SignInForm />
+          <>
+            <SignInForm />
+            <p className={styles.loginHelp}>
+              Mot de passe oublié&nbsp;? Demandez à un administrateur du club de vous envoyer un lien pour en choisir un nouveau.
+            </p>
+          </>
         ) : (
           <p className={styles.error}>
             Aucun compte n’est encore créé. Depuis la console SSH du serveur, dans le dossier du site, lancez{" "}

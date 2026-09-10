@@ -1,10 +1,12 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
-import { authenticate } from "@/lib/admin/users";
 import { closeSession, openSession, readSession } from "@/lib/admin/session";
 import { fromInputDate, removeArticle, saveArticle, stampDate } from "@/lib/admin/store";
+import { clearLoginFailures, loginLockMinutes, recordLoginFailure } from "@/lib/admin/throttle";
+import { authenticate, normalizeLogin } from "@/lib/admin/users";
 
 export type FormState = { error?: string; savedAt?: string; savedStatus?: "draft" | "publish" };
 
@@ -25,13 +27,28 @@ function list(value: FormDataEntryValue | null): string[] {
     .filter(Boolean);
 }
 
+/** Première adresse de X-Forwarded-For : celle du visiteur, derrière le proxy de l’hébergeur. */
+async function clientAddress(): Promise<string | null> {
+  const incoming = await headers();
+  return incoming.get("x-forwarded-for")?.split(",")[0]?.trim() || incoming.get("x-real-ip") || null;
+}
+
 export async function signIn(_state: FormState, formData: FormData): Promise<FormState> {
-  const login = String(formData.get("login") ?? "");
+  const login = normalizeLogin(String(formData.get("login") ?? ""));
   const password = String(formData.get("password") ?? "");
   if (!login || !password) return { error: "Identifiant et mot de passe sont requis." };
 
+  const address = await clientAddress();
+  const wait = loginLockMinutes(login, address);
+  if (wait > 0) {
+    return { error: `Trop d’essais manqués. Par sécurité, patientez ${wait} minute${wait > 1 ? "s" : ""} avant de réessayer.` };
+  }
   const user = authenticate(login, password);
-  if (!user) return { error: "Identifiant ou mot de passe incorrect." };
+  if (!user) {
+    recordLoginFailure(login, address);
+    return { error: "Identifiant ou mot de passe incorrect." };
+  }
+  clearLoginFailures(login);
 
   try {
     await openSession(user);

@@ -44,7 +44,7 @@ pnpm admin:secret                             # génère ADMIN_SESSION_SECRET
 pnpm admin:user ajouter romain "Romain"       # demande le mot de passe, sans écho
 ```
 
-Les comptes vivent dans `data/admin/users.json`, hors du dépôt : seul le condensé scrypt du mot de passe y figure. Autres commandes : `pnpm admin:user lister`, `pnpm admin:user supprimer <identifiant>`. Relancer `ajouter` sur un identifiant existant change son mot de passe.
+Les comptes vivent dans `data/admin/users.json`, hors du dépôt : seul le condensé scrypt du mot de passe y figure. Autres commandes : `pnpm admin:user lister`, `pnpm admin:user supprimer <identifiant>`. Relancer `ajouter` sur un identifiant existant change son mot de passe. Un compte créé ainsi est administrateur : les membres suivants s'invitent depuis la page « Comptes » du site, sans que personne ne leur transmette de mot de passe.
 
 ### Ce que l'espace admin permet
 
@@ -54,6 +54,8 @@ Les comptes vivent dans `data/admin/users.json`, hors du dépôt : seul le conde
 - envoyer photos et PDF (15 Mo maximum, contenu vérifié à l'octet près). Les photos de téléphone sont réduites à 2 400 px dans le navigateur avant l'envoi ;
 - garder un article en brouillon : il reste listé dans l'admin, invisible sur le site ;
 - modifier ou supprimer un article maison ;
+- **inviter des membres sans leur écrire de mot de passe** (page « Comptes », réservée aux administrateurs) : chaque invitation produit un lien à usage unique, valable 7 jours, où le membre choisit lui-même son mot de passe. Seule l'empreinte SHA-256 du lien est conservée, dans `data/admin/invitations.json`. Le même mécanisme sert aux mots de passe oubliés, et « Retirer l'accès » ferme aussitôt les sessions ouvertes — chaque requête revérifie le compte (`lib/admin/accounts.ts`, `lib/admin/session.ts`) ;
+- limiter les essais de connexion : 5 échecs en 15 minutes bloquent l'identifiant, 20 bloquent l'adresse IP (`lib/admin/throttle.ts`, en mémoire) ;
 - **corriger un article repris de WordPress** : l'enregistrement écrit une copie dans `content/actualites/`, qui masque l'original partout sur le site. `content/articles/` n'est jamais modifié, donc une réimportation ne peut rien écraser, et le bouton « Rétablir la version d'origine » efface simplement la copie.
 
 ### Contraintes d'hébergement

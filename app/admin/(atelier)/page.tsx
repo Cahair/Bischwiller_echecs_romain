@@ -15,7 +15,7 @@ const FILTERS = [
 ] as const;
 
 type Filter = (typeof FILTERS)[number]["key"];
-type Query = { q?: string; statut?: string; annee?: string; page?: string };
+type Query = { q?: string; statut?: string; annee?: string; page?: string; bienvenue?: string };
 
 function formatStamp(stamp: string, options: Intl.DateTimeFormatOptions): string {
   return new Date(`${stamp.replace(" ", "T")}Z`).toLocaleDateString("fr-FR", { timeZone: "UTC", ...options });
@@ -87,6 +87,22 @@ export default async function AdminArticlesPage({ searchParams }: { searchParams
 
   return (
     <>
+      {/* Arrivée par un lien d’invitation : on dit tout de suite comment revenir. */}
+      {query.bienvenue && session ? (
+        <div className={styles.success} role="status">
+          <span className={styles.successIcon}>
+            <Icon name="check" size="1.6em" />
+          </span>
+          <div className={styles.successBody}>
+            <strong>C’est fait, votre accès est prêt.</strong>
+            <p>
+              Pour revenir plus tard, allez sur <b>bischwiller-echecs.com/admin</b>, puis entrez votre identifiant <b>{session.login}</b> et
+              votre mot de passe. Votre navigateur peut aussi les retenir pour vous.
+            </p>
+          </div>
+        </div>
+      ) : null}
+
       <section className={styles.welcome}>
         <div>
           <p className={styles.welcomeHello}>Bonjour{firstName ? ` ${firstName}` : ""},</p>
