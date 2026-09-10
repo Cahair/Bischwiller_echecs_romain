@@ -542,7 +542,6 @@ export function ArticleEditor({
           need="required"
           done={title.trim() !== ""}
           error={titleMissing ? "Il manque le titre : écrivez-le dans le cadre ci-dessous." : null}
-          hint="Court et parlant, comme un titre de journal."
         >
           <input
             className={`${styles.input} ${styles.titleInput}`}
@@ -632,9 +631,7 @@ export function ArticleEditor({
           done={content.trim() !== ""}
           error={textMissing ? "Il manque le texte : écrivez au moins quelques lignes dans le cadre ci-dessous." : null}
           hint={
-            editorMode === "simple"
-              ? "Écrivez comme dans un e-mail. Pour commencer un nouveau paragraphe, laissez une ligne vide."
-              : "Éditeur avancé : le texte s’écrit en Markdown, et l’aperçu montre le résultat au fur et à mesure."
+            editorMode === "simple" ? null : "Éditeur avancé : le texte s’écrit en Markdown, et l’aperçu montre le résultat au fur et à mesure."
           }
         >
           {editorMode === "simple" ? (
