@@ -1,7 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import type { ReactNode } from "react";
 import { signOut } from "@/app/admin/actions";
+import { Icon } from "@/components/admin/icons";
 import { readSession } from "@/lib/admin/session";
 import styles from "@/components/admin/admin.module.css";
 
@@ -16,20 +18,26 @@ export default async function AtelierLayout({ children }: { children: ReactNode 
 
   return (
     <>
-      <div className={styles.bar}>
+      <header className={styles.bar}>
         <Link className={styles.brand} href="/admin">
-          Articles <span>C.E. Bischwiller</span>
+          <Image src="/media/wordpress/2025/06/images.webp" alt="" width={36} height={36} />
+          <span className={styles.brandText}>
+            Espace de rédaction
+            <small>Cercle d’Échecs de Bischwiller</small>
+          </span>
         </Link>
-        <Link className={styles.barLink} href="/actualites" target="_blank" rel="noreferrer">
-          Voir le site ↗
-        </Link>
-        <span className={styles.who}>{session.name}</span>
-        <form action={signOut}>
-          <button className={styles.barLink} type="submit">
-            Déconnexion
-          </button>
-        </form>
-      </div>
+        <nav className={styles.barNav} aria-label="Espace admin">
+          <a className={styles.barLink} href="/" target="_blank" rel="noreferrer">
+            Voir le site <Icon name="external" />
+          </a>
+          <span className={styles.who}>{session.name}</span>
+          <form action={signOut}>
+            <button className={styles.barLink} type="submit">
+              Se déconnecter
+            </button>
+          </form>
+        </nav>
+      </header>
       <main className={styles.main}>{children}</main>
     </>
   );

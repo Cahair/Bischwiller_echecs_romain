@@ -106,10 +106,18 @@ export const getLocalArticleIndex = cache((): ArticleSummary[] =>
   }),
 );
 
-/** Fusionne export WordPress et articles maison, du plus récent au plus ancien. */
-export function mergeArticles<A extends { publishedAt: string }, B extends { publishedAt: string }>(
-  generated: readonly A[],
-  locals: readonly B[],
-): (A | B)[] {
-  return [...locals, ...generated].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+/**
+ * Fusionne export WordPress et articles maison, du plus récent au plus ancien.
+ * Un article maison portant le slug d’un article importé le remplace : c’est
+ * ainsi que l’espace admin corrige un article WordPress sans jamais toucher à
+ * `content/articles/`, qui est régénéré à chaque réimportation.
+ */
+export function mergeArticles<
+  A extends { slug: string; publishedAt: string },
+  B extends { slug: string; publishedAt: string },
+>(generated: readonly A[], locals: readonly B[]): (A | B)[] {
+  const overridden = new Set(locals.map((article) => article.slug));
+  return [...locals, ...generated.filter((article) => !overridden.has(article.slug))].sort((a, b) =>
+    b.publishedAt.localeCompare(a.publishedAt),
+  );
 }

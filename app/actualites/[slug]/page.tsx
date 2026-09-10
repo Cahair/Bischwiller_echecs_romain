@@ -8,6 +8,7 @@ import remarkGfm from "remark-gfm";
 import generatedArticles from "@/data/generated/articles.json";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { flowingText, getLocalArticles, mergeArticles } from "@/lib/articles";
+import { plainExcerpt } from "@/lib/markdown";
 import { fullSizePhoto, photoFrame, photoSize } from "@/lib/image-size";
 import styles from "@/components/articles/articles.module.css";
 
@@ -17,7 +18,7 @@ const allArticles = () => mergeArticles(generatedArticles, getLocalArticles());
 export function generateStaticParams() { return allArticles().map(({ slug }) => ({ slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params; const article = allArticles().find((item) => item.slug === slug);
-  return article ? { title: `${article.title} — Cercle d'Échecs de Bischwiller`, description: article.excerpt || undefined } : {};
+  return article ? { title: `${article.title} — Cercle d'Échecs de Bischwiller`, description: article.excerpt || plainExcerpt(article.contentMarkdown) || undefined } : {};
 }
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params; const article = allArticles().find((item) => item.slug === slug); if (!article) notFound();

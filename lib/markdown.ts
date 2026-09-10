@@ -51,3 +51,31 @@ export function flowingText(markdown: string): string {
   }
   return flowed.join("\n");
 }
+
+/**
+ * Premières lignes d’un article, débarrassées du Markdown. Elles servent de
+ * description aux moteurs de recherche et aux partages quand l’auteur n’a pas
+ * écrit de résumé — ce que l’espace admin lui permet de ne pas faire.
+ */
+export function plainExcerpt(markdown: string, maxLength = 200): string {
+  const paragraphs = markdown
+    .replace(/\r\n?/g, "\n")
+    .split(/\n\s*\n/)
+    .map((block) =>
+      block
+        .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
+        .replace(/\[([^\]]*)\]\([^)]*\)/g, "$1")
+        .replace(/<[^>]+>/g, " ")
+        .replace(/^\s{0,3}(?:#{1,6}\s+|>\s?|[-*+]\s+|\d+[.)]\s+)/gm, "")
+        .replace(/\\$/gm, "")
+        .replace(/[*_`~|]/g, "")
+        .replace(/\s+/g, " ")
+        .trim(),
+    );
+  // Un intertitre ou une légende isolée ne fait pas une description.
+  const text = paragraphs.find((paragraph) => paragraph.length >= 40) ?? paragraphs.find(Boolean) ?? "";
+  if (text.length <= maxLength) return text;
+  const cut = text.slice(0, maxLength);
+  const space = cut.lastIndexOf(" ");
+  return `${cut.slice(0, space > maxLength * 0.6 ? space : maxLength).replace(/[\s,;:.–-]+$/, "")}…`;
+}

@@ -17,7 +17,8 @@ export default async function SignInPage() {
           <SignInForm />
         ) : (
           <p className={styles.error}>
-            Aucun compte n’est encore créé. Depuis le serveur, lancez <code>pnpm admin:user ajouter</code> puis rechargez cette page.
+            Aucun compte n’est encore créé. Depuis la console SSH du serveur, dans le dossier du site, lancez{" "}
+            <code>node scripts/admin/user.mjs ajouter &lt;identifiant&gt; &quot;&lt;Nom&gt;&quot;</code> puis rechargez cette page.
           </p>
         )}
       </div>

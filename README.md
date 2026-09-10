@@ -34,7 +34,7 @@ Résultats générés :
 
 ## Espace admin
 
-Les articles se rédigent et se publient depuis `/admin`, sans passer par le dépôt. L'éditeur écrit un fichier Markdown dans `content/actualites/` et dépose les photos dans `public/media/actualites/` : un article publié depuis le site est indiscernable d'un article écrit à la main. Les pages publiques concernées sont régénérées dans la foulée, sans redéploiement.
+Les articles se rédigent et se publient depuis `/admin`, sans passer par le dépôt. L'éditeur écrit un fichier Markdown dans `content/actualites/` et dépose les photos dans `public/media/actualites/` : un article publié depuis le site est indiscernable d'un article écrit à la main. Les pages publiques concernées sont régénérées dans la foulée, sans redéploiement. En production, Next ne sert depuis `public/` que les fichiers présents au démarrage : les photos envoyées ensuite passent par `app/media/actualites/[file]/route.ts`, qui les lit sur le disque.
 
 ### Mise en service
 
@@ -48,10 +48,12 @@ Les comptes vivent dans `data/admin/users.json`, hors du dépôt : seul le conde
 
 ### Ce que l'espace admin permet
 
-- rédiger en Markdown avec barre d'outils et aperçu en direct, rendu par le composant du site ;
-- envoyer photos et PDF (15 Mo maximum, contenu vérifié à l'octet près) ;
+- rédiger sans voir une ligne de Markdown : le texte se tape comme un e-mail, photos, intertitres et PDF s'insèrent à l'endroit du curseur, les rubriques se choisissent d'un clic, et un aperçu plein écran montre l'article tel qu'il sera publié ;
+- passer à l'éditeur Markdown avancé, avec aperçu en direct. Il s'ouvre d'office pour les articles dont la mise en forme (liens, images, tableaux) ne passerait pas sans perte dans l'éditeur simple — la conversion est dans `components/admin/blocks.ts` ;
+- envoyer photos et PDF (15 Mo maximum, contenu vérifié à l'octet près). Les photos de téléphone sont réduites à 2 400 px dans le navigateur avant l'envoi ;
 - garder un article en brouillon : il reste listé dans l'admin, invisible sur le site ;
-- modifier ou supprimer un article maison ; les articles repris de WordPress restent gérés par `content/articles/`.
+- modifier ou supprimer un article maison ;
+- **corriger un article repris de WordPress** : l'enregistrement écrit une copie dans `content/actualites/`, qui masque l'original partout sur le site. `content/articles/` n'est jamais modifié, donc une réimportation ne peut rien écraser, et le bouton « Rétablir la version d'origine » efface simplement la copie.
 
 ### Contraintes d'hébergement
 

@@ -1,12 +1,15 @@
 import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import generatedIndex from "@/data/generated/article-index.json";
+import generatedArticles from "@/data/generated/articles.json";
 import {
   LOCAL_ARTICLES_DIR,
   listLocalArticleFiles,
   parseLocalArticle,
+  mergeArticles,
   slugify,
   type Article,
+  type ArticleSummary,
 } from "@/lib/articles";
 
 /**
@@ -48,10 +51,25 @@ const FRONT_MATTER_ORDER = [
   "originalUrl",
 ] as const;
 
-/** `2026-09-08 09:00:00`, le format des en-têtes issus de WordPress. */
+const PARIS_CLOCK = new Intl.DateTimeFormat("fr-FR", {
+  timeZone: "Europe/Paris",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hourCycle: "h23",
+});
+
+/**
+ * `2026-09-08 09:00:00`, le format des en-têtes issus de WordPress, à l’heure
+ * de Paris : le site affiche la date telle qu’enregistrée, et en temps
+ * universel un article publié à 0 h 30 serait daté de la veille.
+ */
 export function stampDate(date: Date): string {
-  const pad = (value: number) => String(value).padStart(2, "0");
-  return `${date.getUTCFullYear()}-${pad(date.getUTCMonth() + 1)}-${pad(date.getUTCDate())} ${pad(date.getUTCHours())}:${pad(date.getUTCMinutes())}:${pad(date.getUTCSeconds())}`;
+  const part = Object.fromEntries(PARIS_CLOCK.formatToParts(date).map(({ type, value }) => [type, value]));
+  return `${part.year}-${part.month}-${part.day} ${part.hour}:${part.minute}:${part.second}`;
 }
 
 /** `2026-09-08 09:00:00` ⇄ la valeur d’un `<input type="datetime-local">`. */
@@ -74,13 +92,55 @@ export function findStoredArticle(slug: string): StoredArticle | null {
   return listStoredArticles().find((article) => article.slug === slug) ?? null;
 }
 
-/** Un slug déjà pris par un autre fichier reçoit un suffixe `-2`, `-3`… */
-function availableSlug(wanted: string, currentFileName: string | null): string {
-  const taken = new Set(
-    listStoredArticles()
-      .filter((article) => article.fileName !== currentFileName)
-      .map((article) => article.slug),
-  );
+/**
+ * `imported` : article venu de l’export WordPress, encore servi depuis
+ * `data/generated/`. Le modifier ne le touche pas — l’enregistrement écrit un
+ * fichier maison de même slug, qui le masque partout sur le site. Supprimer ce
+ * fichier fait donc réapparaître la version d’origine, intacte.
+ */
+export type ArticleSource = "local" | "imported";
+export type AdminArticleSummary = ArticleSummary & { source: ArticleSource; fileName: string | null };
+export type AdminArticle = Article & {
+  source: ArticleSource;
+  fileName: string | null;
+  /** Vrai quand ce fichier maison masque un article importé de même slug :
+   *  le supprimer ne retire alors rien du site, il rétablit l’original. */
+  shadowsImported: boolean;
+};
+
+function importedSummary(article: (typeof generatedIndex)[number]): AdminArticleSummary {
+  return { ...article, featuredImageFit: null, source: "imported", fileName: null };
+}
+
+/** Les 568 articles du site, fichiers maison en tête de ceux qu’ils masquent. */
+export function listAdminArticles(): AdminArticleSummary[] {
+  const locals: AdminArticleSummary[] = listStoredArticles().map(({ contentMarkdown, fileName, ...summary }) => {
+    void contentMarkdown;
+    return { ...summary, source: "local", fileName };
+  });
+  return mergeArticles(generatedIndex.map(importedSummary), locals);
+}
+
+export function findAdminArticle(slug: string): AdminArticle | null {
+  const imported = generatedArticles.find((article) => article.slug === slug);
+  const local = findStoredArticle(slug);
+  if (local) return { ...local, source: "local", shadowsImported: imported !== undefined };
+  if (!imported) return null;
+  return { ...imported, featuredImageFit: null, source: "imported", fileName: null, shadowsImported: false };
+}
+
+/**
+ * Un slug déjà pris reçoit un suffixe `-2`, `-3`… Les slugs importés comptent
+ * eux aussi comme pris : sans quoi un nouvel article masquerait par accident un
+ * article WordPress homonyme. Seul `keepable` — le slug d’où l’on vient — y
+ * échappe, puisque le masquer est précisément l’intention.
+ */
+function availableSlug(wanted: string, currentFileName: string | null, keepable: string | null): string {
+  const taken = new Set<string>(generatedIndex.map((article) => article.slug));
+  for (const article of listStoredArticles()) {
+    if (article.fileName !== currentFileName) taken.add(article.slug);
+  }
+  if (keepable) taken.delete(keepable);
   if (!taken.has(wanted)) return wanted;
   for (let suffix = 2; ; suffix += 1) {
     const candidate = `${wanted}-${suffix}`;
@@ -111,13 +171,21 @@ export function serializeArticle(article: Article): string {
   return `---\n${header.join("\n")}\n---\n${article.contentMarkdown.replace(/\r\n/g, "\n").trim()}\n`;
 }
 
-/** Crée ou remplace un article, et renvoie son slug définitif. */
+/**
+ * Crée ou remplace un article. Modifier un article importé n’écrit pas dans
+ * `content/articles/` : le fichier maison produit ici prend sa place.
+ */
 export function saveArticle(draft: ArticleDraft, previousSlug: string | null): StoredArticle {
-  const existing = previousSlug ? findStoredArticle(previousSlug) : null;
+  const existing = previousSlug ? findAdminArticle(previousSlug) : null;
   if (previousSlug && !existing) throw new Error(`Article introuvable : ${previousSlug}`);
 
-  const slug = availableSlug(slugify(draft.slug) || slugify(draft.title) || `article-${Date.now()}`, existing?.fileName ?? null);
+  const slug = availableSlug(
+    slugify(draft.slug) || slugify(draft.title) || `article-${Date.now()}`,
+    existing?.fileName ?? null,
+    previousSlug,
+  );
   const article: Article = {
+    // Un article importé garde son identifiant : la copie prolonge l’original.
     id: existing?.id ?? nextId(listStoredArticles()),
     slug,
     title: draft.title.trim(),
@@ -139,14 +207,19 @@ export function saveArticle(draft: ArticleDraft, previousSlug: string | null): S
   const fileName = `${slug}.md`;
   writeFileSync(path.join(LOCAL_ARTICLES_DIR, fileName), serializeArticle(article), "utf8");
   // Renommage : le fichier de l’ancien slug n’a plus lieu d’être.
-  if (existing && existing.fileName !== fileName) rmSync(path.join(LOCAL_ARTICLES_DIR, existing.fileName), { force: true });
+  if (existing?.fileName && existing.fileName !== fileName) rmSync(path.join(LOCAL_ARTICLES_DIR, existing.fileName), { force: true });
   return { ...article, fileName };
 }
 
-/** Toutes les catégories déjà employées, export WordPress compris, pour l’auto-complétion. */
-export function knownCategories(): string[] {
-  const used = [...generatedIndex.flatMap((article) => article.categories), ...listStoredArticles().flatMap((article) => article.categories)];
-  return Array.from(new Set(used)).sort((a, b) => a.localeCompare(b, "fr"));
+/** Rubriques déjà employées sur le site, les plus courantes d’abord : l’éditeur les propose d’un clic. */
+export function categoryUsage(): { name: string; count: number }[] {
+  const counts = new Map<string, number>();
+  for (const article of listAdminArticles()) {
+    for (const name of article.categories) counts.set(name, (counts.get(name) ?? 0) + 1);
+  }
+  return [...counts]
+    .map(([name, count]) => ({ name, count }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name, "fr"));
 }
 
 export function removeArticle(slug: string): StoredArticle | null {
