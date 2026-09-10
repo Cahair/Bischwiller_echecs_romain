@@ -6,7 +6,8 @@ import type { SVGProps } from "react";
  * pas les conventions des applications.
  */
 const PATHS = {
-  back: "M19 12H5M11 6l-6 6 6 6",
+  alert: "M12 3.5 21.5 20h-19zM12 10v4.5M12 17.3v.1",
+  back:"M19 12H5M11 6l-6 6 6 6",
   camera: "M4 8h3l2-3h6l2 3h3v11H4zM12 16.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z",
   check: "M5 12.5l4.5 4.5L19 7.5",
   code: "M9 7l-5 5 5 5M15 7l5 5-5 5",

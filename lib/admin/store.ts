@@ -171,6 +171,9 @@ export function serializeArticle(article: Article): string {
   return `---\n${header.join("\n")}\n---\n${article.contentMarkdown.replace(/\r\n/g, "\n").trim()}\n`;
 }
 
+/** Signature d’un nouvel article, quel que soit le compte connecté — et de tout article dont le champ « Auteur » reste vide. */
+export const DEFAULT_AUTHOR = "Yannis";
+
 /**
  * Crée ou remplace un article. Modifier un article importé n’écrit pas dans
  * `content/articles/` : le fichier maison produit ici prend sa place.
@@ -190,7 +193,7 @@ export function saveArticle(draft: ArticleDraft, previousSlug: string | null): S
     slug,
     title: draft.title.trim(),
     status: draft.status,
-    author: draft.author.trim() || "Cercle d’Échecs de Bischwiller",
+    author: draft.author.trim() || DEFAULT_AUTHOR,
     publishedAt: draft.publishedAt,
     modifiedAt: stampDate(new Date()),
     excerpt: draft.excerpt.trim(),

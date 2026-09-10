@@ -73,7 +73,7 @@ export async function saveArticleForm(_state: FormState, formData: FormData): Pr
         title,
         slug: String(formData.get("slug") ?? "").trim() || title,
         publishedAt: publishedAt ? fromInputDate(publishedAt) : stampDate(new Date()),
-        author: String(formData.get("author") ?? session.name),
+        author: String(formData.get("author") ?? ""),
         status,
         excerpt: String(formData.get("excerpt") ?? ""),
         categories: list(formData.get("categories")),

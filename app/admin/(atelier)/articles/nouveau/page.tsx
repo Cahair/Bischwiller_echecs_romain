@@ -1,13 +1,10 @@
 import Link from "next/link";
 import { ArticleEditor } from "@/components/admin/article-editor";
 import { Icon } from "@/components/admin/icons";
-import { readSession } from "@/lib/admin/session";
-import { categoryUsage, stampDate, toInputDate } from "@/lib/admin/store";
+import { categoryUsage, DEFAULT_AUTHOR, stampDate, toInputDate } from "@/lib/admin/store";
 import styles from "@/components/admin/admin.module.css";
 
-export default async function NewArticlePage() {
-  const session = await readSession();
-
+export default function NewArticlePage() {
   return (
     <>
       <header className={styles.pageHead}>
@@ -16,8 +13,8 @@ export default async function NewArticlePage() {
         </Link>
         <h1>Écrire un nouvel article</h1>
         <p>
-          Remplissez les étapes ci-dessous. Rien n’apparaît sur le site tant que vous n’avez pas cliqué sur «&nbsp;Publier
-          l’article&nbsp;».
+          Remplissez les étapes ci-dessous&nbsp;: seuls le titre et le texte sont obligatoires. Rien n’apparaît sur le site tant que
+          vous n’avez pas cliqué sur «&nbsp;Publier l’article&nbsp;».
         </p>
       </header>
       <ArticleEditor
@@ -29,7 +26,7 @@ export default async function NewArticlePage() {
           slug: "",
           title: "",
           publishedAt: toInputDate(stampDate(new Date())),
-          author: session?.name ?? "Cercle d’Échecs de Bischwiller",
+          author: DEFAULT_AUTHOR,
           excerpt: "",
           categories: [],
           tags: "",

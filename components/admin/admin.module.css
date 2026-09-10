@@ -3,7 +3,8 @@
    aucune information portée par la seule couleur. */
 .shell{min-height:100svh;background:var(--paper);color:var(--ink);font-family:var(--font-sans);font-size:1.0625rem;line-height:1.5}
 .shell :focus-visible{outline:3px solid var(--blue);outline-offset:2px}
-.anchor{scroll-margin-top:84px}
+/* S’ajoute au scroll-padding-top global (globals.css), qui dégage déjà la barre du haut. */
+.anchor{scroll-margin-top:20px}
 
 /* Barre du haut */
 .bar{position:sticky;top:0;z-index:40;display:flex;flex-wrap:wrap;align-items:center;gap:10px 24px;padding:10px clamp(16px,4vw,40px);background:var(--surface-dark);color:var(--text-on-dark)}
@@ -67,15 +68,21 @@ button.barLink{padding:0;background:none;border:0;font-family:inherit;cursor:poi
 /* Éditeur : une colonne d’étapes numérotées */
 .form{max-width:860px}
 .formWide{max-width:none}
-.step{margin-bottom:20px;padding:26px clamp(18px,3vw,32px) 28px;background:#fff;border:1px solid var(--line);border-radius:20px}
+.step{margin-bottom:20px;padding:26px clamp(18px,3vw,32px) 28px;background:#fff;border:1px solid var(--line);border-radius:20px;scroll-margin-top:20px}
+/* Étape obligatoire restée vide au moment d’enregistrer : liseré rouge, et le message en toutes lettres. */
+.stepError{border-color:#c0353d;box-shadow:inset 6px 0 0 #c0353d}
 .stepHead{display:flex;align-items:flex-start;gap:16px;margin-bottom:18px}
 .stepNum{flex:none;display:grid;place-items:center;width:40px;height:40px;color:var(--ink);background:var(--paper-deep);border-radius:50%;font-size:1.1rem;font-weight:800}
 .stepNumDone{color:#fff;background:#1f7a45}
 .stepTitle{margin:5px 0 2px;font-size:1.35rem;font-weight:800;line-height:1.25}
-.optional{margin-left:10px;padding:3px 10px;color:var(--muted);background:var(--paper);border-radius:999px;font-size:.8rem;font-weight:600;vertical-align:middle}
+.optional,.required{margin-left:6px;padding:3px 10px;border-radius:999px;font-size:.8rem;vertical-align:middle;white-space:nowrap}
+.optional{color:var(--muted);background:var(--paper);font-weight:600}
+.required{color:#fff;background:#a3242b;font-weight:800}
 .stepHint{margin:0;color:var(--text-body)}
 .stepBody{padding-left:56px}
+.stepErrorText{display:flex;align-items:flex-start;gap:8px;margin:0 0 12px;color:#a3242b;font-weight:800}
 .titleInput{min-height:60px;font-size:1.3rem;font-weight:700}
+.input[aria-invalid="true"],.textarea[aria-invalid="true"]{border-color:#c0353d;background:#fff8f8}
 
 /* Photo principale */
 .dropzone{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;width:100%;min-height:200px;padding:24px;color:var(--blue);background:#f6f8fd;border:3px dashed rgb(65 101 192/.45);border-radius:18px;font-family:inherit;font-size:1.15rem;font-weight:800;text-align:center;cursor:pointer;transition:background-color .15s,border-color .15s}
@@ -140,6 +147,7 @@ button.barLink{padding:0;background:none;border:0;font-family:inherit;cursor:poi
 /* Barre d’actions, toujours visible en bas de l’écran */
 .actionBar{position:sticky;bottom:0;z-index:20;display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px;margin-top:8px;padding:14px 18px;background:rgb(252 251 247/.97);border:1px solid var(--line);border-bottom:0;border-radius:18px 18px 0 0;box-shadow:0 -12px 30px rgb(17 21 29/.1)}
 .actionStatus{flex:1 1 160px;color:var(--muted);font-size:.95rem}
+.actionStatusWarn{color:#a3242b;font-weight:700}
 .actionAlert{flex-basis:100%;margin:0;padding:10px 14px;color:#7d1a20;background:#fbeaea;border-radius:10px;font-weight:600}
 .actionAlert button{margin-left:10px;padding:0;color:inherit;background:none;border:0;font:inherit;text-decoration:underline;cursor:pointer}
 

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState, useEffect, useRef, useState, type ReactNode } from "react";
+import { useActionState, useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { deleteArticleForm, saveArticleForm, type FormState } from "@/app/admin/actions";
@@ -56,19 +56,27 @@ function Step({
   number,
   title,
   hint,
-  optional = false,
+  need,
   done = false,
+  error = null,
   children,
 }: {
   number: number;
   title: string;
   hint?: ReactNode;
-  optional?: boolean;
+  /** Dit en toutes lettres à côté du titre : on sait d’emblée ce qu’on peut laisser de côté. */
+  need: "required" | "optional";
   done?: boolean;
+  /** Étape obligatoire restée vide au moment d’enregistrer. */
+  error?: string | null;
   children: ReactNode;
 }) {
   return (
-    <section className={styles.step} aria-labelledby={`etape-${number}`}>
+    <section
+      id={`etape-${number}-bloc`}
+      className={`${styles.step} ${error ? styles.stepError : ""}`}
+      aria-labelledby={`etape-${number}`}
+    >
       <div className={styles.stepHead}>
         {/* Le numéro devient une coche une fois l’étape remplie : on voit où l’on en est. */}
         <span className={`${styles.stepNum} ${done ? styles.stepNumDone : ""}`} aria-hidden="true">
@@ -76,13 +84,24 @@ function Step({
         </span>
         <div>
           <h2 className={styles.stepTitle} id={`etape-${number}`}>
-            {title}
-            {optional ? <span className={styles.optional}>facultatif</span> : null}
+            {title}{" "}
+            {need === "required" ? (
+              <span className={styles.required}>obligatoire</span>
+            ) : (
+              <span className={styles.optional}>facultatif</span>
+            )}
           </h2>
           {hint ? <p className={styles.stepHint}>{hint}</p> : null}
         </div>
       </div>
-      <div className={styles.stepBody}>{children}</div>
+      <div className={styles.stepBody}>
+        {error ? (
+          <p className={styles.stepErrorText} id={`etape-${number}-erreur`}>
+            <Icon name="alert" /> {error}
+          </p>
+        ) : null}
+        {children}
+      </div>
     </section>
   );
 }
@@ -92,12 +111,15 @@ function GrowingTextarea({
   value,
   rows,
   placeholder,
+  errorId,
   onChange,
   onCaret,
 }: {
   value: string;
   rows: number;
   placeholder: string;
+  /** Identifiant du message d’erreur de l’étape, quand le texte manque. */
+  errorId?: string;
   onChange: (value: string) => void;
   onCaret: (position: number) => void;
 }) {
@@ -118,6 +140,8 @@ function GrowingTextarea({
       value={value}
       rows={rows}
       placeholder={placeholder}
+      aria-invalid={errorId ? true : undefined}
+      aria-describedby={errorId}
       aria-label="Texte de l’article"
       spellCheck
       onChange={(event) => onChange(event.target.value)}
@@ -158,6 +182,9 @@ export function ArticleEditor({
   const [excerpt, setExcerpt] = useState(article.excerpt);
   const [tags, setTags] = useState(article.tags);
   const [status, setStatus] = useState(article.status);
+  // Clic sur « Publier » alors qu’une étape obligatoire est vide : l’intention
+  // est retenue, et chaque étape en défaut se signale tant qu’elle le reste.
+  const [attempted, setAttempted] = useState<Saved | null>(null);
 
   // L’éditeur simple d’office, sauf si l’article contient ce qu’il ne sait pas
   // restituer sans perte : liens, images, tableaux… (voir blocks.ts). Les
@@ -195,6 +222,10 @@ export function ArticleEditor({
   const [confirmation, setConfirmation] = useState<Saved | null>(savedOnLoad);
   const dirty = snapshot !== savedSnapshot;
   const busy = Object.keys(uploads).length > 0 || coverProgress !== null || markdownProgress !== null;
+  const titleMissing = attempted !== null && title.trim() === "";
+  const textMissing = attempted === "publish" && content.trim() === "";
+  const missing = [titleMissing ? "le titre (étape 1)" : null, textMissing ? "le texte (étape 3)" : null].filter(Boolean);
+  const warnMissing = !busy && missing.length > 0;
 
   // Réponse de l’action serveur, intégrée pendant le rendu plutôt que dans un
   // effet : la confirmation s’affiche sans rendu intermédiaire.
@@ -253,6 +284,32 @@ export function ArticleEditor({
   function onTitle(value: string) {
     setTitle(value);
     if (!slugPinned) setSlug(slugify(value));
+  }
+
+  /**
+   * Dernier contrôle avant l’envoi, le même que celui du serveur. Plutôt qu’une
+   * bulle fugace du navigateur, l’étape à compléter s’encadre de rouge, avec le
+   * message en toutes lettres, et l’on y est conduit, le curseur dans le champ.
+   */
+  function onSubmit(event: FormEvent<HTMLFormElement>) {
+    const submitter = (event.nativeEvent as SubmitEvent).submitter;
+    const intent: Saved = submitter?.getAttribute("value") === "publish" ? "publish" : "draft";
+    const noTitle = title.trim() === "";
+    const noText = intent === "publish" && content.trim() === "";
+    if (!noTitle && !noText) {
+      setAttempted(null);
+      setSubmittedSnapshot(snapshot);
+      return;
+    }
+    event.preventDefault();
+    setAttempted(intent);
+    setPreviewOpen(false);
+    // Une fois l’aperçu plein écran refermé.
+    requestAnimationFrame(() => {
+      const step = document.getElementById(noTitle ? "etape-1-bloc" : "etape-3-bloc");
+      step?.scrollIntoView({ behavior: "smooth", block: "start" });
+      step?.querySelector<HTMLElement>("textarea, input:not([type=hidden]):not([type=checkbox])")?.focus({ preventScroll: true });
+    });
   }
 
   function toggleCategory(name: string) {
@@ -421,11 +478,13 @@ export function ArticleEditor({
   const alert = message ?? serverError;
   const statusLine = busy
     ? "Envoi des fichiers en cours…"
-    : dirty
-      ? "Modifications non enregistrées"
-      : state.savedAt
-        ? `Enregistré à ${state.savedAt}`
-        : "";
+    : warnMissing
+      ? `Il manque ${missing.join(" et ")}.`
+      : dirty
+        ? "Modifications non enregistrées"
+        : state.savedAt
+          ? `Enregistré à ${state.savedAt}`
+          : "";
 
   return (
     <>
@@ -462,7 +521,8 @@ export function ArticleEditor({
         id="editeur"
         className={`${styles.form} ${editorMode === "markdown" ? styles.formWide : ""}`}
         action={action}
-        onSubmit={() => setSubmittedSnapshot(snapshot)}
+        noValidate
+        onSubmit={onSubmit}
         onKeyDown={(event) => {
           // Entrée dans un champ d’une ligne enverrait tout le formulaire : surprise garantie.
           if (event.key === "Enter" && event.target instanceof HTMLInputElement && event.target.type !== "checkbox") {
@@ -476,7 +536,14 @@ export function ArticleEditor({
         <input type="hidden" name="categories" value={chosen.join(", ")} />
         <input type="hidden" name="featuredImage" value={cover} />
 
-        <Step number={1} title="Le titre" done={title.trim() !== ""} hint="Court et parlant, comme un titre de journal.">
+        <Step
+          number={1}
+          title="Le titre"
+          need="required"
+          done={title.trim() !== ""}
+          error={titleMissing ? "Il manque le titre : écrivez-le dans le cadre ci-dessous." : null}
+          hint="Court et parlant, comme un titre de journal."
+        >
           <input
             className={`${styles.input} ${styles.titleInput}`}
             name="title"
@@ -484,6 +551,8 @@ export function ArticleEditor({
             onChange={(event) => onTitle(event.target.value)}
             placeholder="Par exemple : Victoire de l’équipe 1 contre Metz"
             aria-labelledby="etape-1"
+            aria-invalid={titleMissing || undefined}
+            aria-describedby={titleMissing ? "etape-1-erreur" : undefined}
             maxLength={200}
             required
           />
@@ -492,7 +561,7 @@ export function ArticleEditor({
         <Step
           number={2}
           title="La photo principale"
-          optional
+          need="optional"
           done={cover !== ""}
           hint="Elle s’affiche en grand en haut de l’article et dans la liste des actualités."
         >
@@ -559,7 +628,9 @@ export function ArticleEditor({
         <Step
           number={3}
           title="Le texte"
+          need="required"
           done={content.trim() !== ""}
+          error={textMissing ? "Il manque le texte : écrivez au moins quelques lignes dans le cadre ci-dessous." : null}
           hint={
             editorMode === "simple"
               ? "Écrivez comme dans un e-mail. Pour commencer un nouveau paragraphe, laissez une ligne vide."
@@ -575,6 +646,7 @@ export function ArticleEditor({
                       <GrowingTextarea
                         value={block.text}
                         rows={blocks.length === 1 ? 9 : 3}
+                        errorId={textMissing ? "etape-3-erreur" : undefined}
                         placeholder={index === 0 ? "Écrivez votre texte ici…" : "Suite du texte (facultatif)…"}
                         onChange={(text) => patchBlock(block.id, (current) => (current.kind === "text" ? { ...current, text } : current))}
                         onCaret={(position) => {
@@ -750,6 +822,8 @@ export function ArticleEditor({
                     value={markdown}
                     onChange={(event) => setMarkdown(event.target.value)}
                     aria-labelledby="etape-3"
+                    aria-invalid={textMissing || undefined}
+                    aria-describedby={textMissing ? "etape-3-erreur" : undefined}
                     spellCheck
                   />
                 </div>
@@ -781,6 +855,7 @@ export function ArticleEditor({
         <Step
           number={4}
           title="La rubrique"
+          need="optional"
           done={chosen.length > 0}
           hint="Choisissez-en une ou plusieurs : elles servent à trier les actualités sur le site."
         >
@@ -904,7 +979,7 @@ export function ArticleEditor({
           <button type="button" className={styles.buttonGhost} onClick={() => setPreviewOpen(true)}>
             <Icon name="eye" /> Aperçu
           </button>
-          <span className={styles.actionStatus} aria-live="polite">
+          <span className={`${styles.actionStatus} ${warnMissing ? styles.actionStatusWarn : ""}`} aria-live="polite">
             {statusLine}
           </span>
           {offerDraft ? (

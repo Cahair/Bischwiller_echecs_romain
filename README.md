@@ -49,6 +49,7 @@ Les comptes vivent dans `data/admin/users.json`, hors du dépôt : seul le conde
 ### Ce que l'espace admin permet
 
 - rédiger sans voir une ligne de Markdown : le texte se tape comme un e-mail, photos, intertitres et PDF s'insèrent à l'endroit du curseur, les rubriques se choisissent d'un clic, et un aperçu plein écran montre l'article tel qu'il sera publié ;
+- ne rien oublier : seuls le titre et le texte sont obligatoires, et signalés comme tels. « Publier » sans eux ne publie rien : l'étape à compléter s'encadre de rouge et le curseur s'y place. Les articles sont signés « Yannis » par défaut, quel que soit le compte connecté (`DEFAULT_AUTHOR` dans `lib/admin/store.ts`) ; le champ « Auteur », sous « Plus d'options », permet de signer autrement ;
 - passer à l'éditeur Markdown avancé, avec aperçu en direct. Il s'ouvre d'office pour les articles dont la mise en forme (liens, images, tableaux) ne passerait pas sans perte dans l'éditeur simple — la conversion est dans `components/admin/blocks.ts` ;
 - envoyer photos et PDF (15 Mo maximum, contenu vérifié à l'octet près). Les photos de téléphone sont réduites à 2 400 px dans le navigateur avant l'envoi ;
 - garder un article en brouillon : il reste listé dans l'admin, invisible sur le site ;

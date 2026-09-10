@@ -12,7 +12,6 @@ const FILTERS = [
   { key: "tous", label: "Tous" },
   { key: "en-ligne", label: "En ligne" },
   { key: "brouillons", label: "Brouillons" },
-  { key: "ici", label: "Écrits ou corrigés ici" },
 ] as const;
 
 type Filter = (typeof FILTERS)[number]["key"];
@@ -34,7 +33,6 @@ function hue(name: string): number {
 function inFilter(article: AdminArticleSummary, filter: Filter): boolean {
   if (filter === "en-ligne") return article.status === "publish";
   if (filter === "brouillons") return article.status === "draft";
-  if (filter === "ici") return article.source === "local";
   return true;
 }
 
