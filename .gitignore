@@ -4,6 +4,8 @@
 
 # Next.js
 /.next
+/.next-build
+/.next-previous
 /out
 
 # Production and local environment files
