@@ -1,0 +1,107 @@
+{"kind":"deck","id":"pr/nlyxve","name":"Deck"}
+{"kind":"layout","layoutId":"e76b0105-21a6-40b5-913a-bd273e0b44cb","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"1f6e9867-2e2b-4103-9ad1-826e2497ed76","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/h0eaub","slide":1,"title":"Cercle d’Échecs","textShapes":4}
+{"kind":"textbox","id":"sh/fe10nqxg","slide":1,"text":"Cercle d’Échecs\nde Bischwiller","textPreview":"Cercle d’Échecs | de Bischwiller","textChars":30,"textLines":2,"bbox":[176,73,470,80]}
+{"kind":"textbox","id":"sh/o3uhkvex","slide":1,"text":"Publier un article\nsur le site","textPreview":"Publier un article | sur le site","textChars":30,"textLines":2,"bbox":[72,247,665,185]}
+{"kind":"textbox","id":"sh/p43it0fi","slide":1,"text":"Le guide pas à pas","textPreview":"Le guide pas à pas","textChars":18,"textLines":1,"bbox":[76,475,630,55]}
+{"kind":"textbox","id":"sh/21czi5wr","slide":1,"text":"bischwiller-echecs.com","textPreview":"bischwiller-echecs.com","textChars":22,"textLines":1,"bbox":[76,635,600,32]}
+{"kind":"image","id":"im/4bqp4vux","slide":1,"name":"","alt":"Illustration d’échecs utilisée sur le site du club","bbox":[745,0,535,720]}
+{"kind":"image","id":"im/3ahobqdc","slide":1,"name":"","alt":"Logo du Cercle d’Échecs de Bischwiller","bbox":[72,62,80,80]}
+{"kind":"notes","id":"nt/h0eaub","slide":1,"text":"Illustration et logo : fichiers du site du Cercle d’Échecs de Bischwiller. Ce guide explique la publication depuis l’espace de rédaction."}
+{"kind":"slide","id":"sl/fu1nkx","slide":2,"title":"1. Votre accès au site","textShapes":8}
+{"kind":"textbox","id":"sh/5one5ore","slide":2,"text":"1. Votre accès au site","textPreview":"1. Votre accès au site","textChars":22,"textLines":1,"bbox":[72,58,1136,70]}
+{"kind":"textbox","id":"sh/ilwvats3","slide":2,"text":"2 / 12","textPreview":"2 / 12","textChars":6,"textLines":1,"bbox":[1140,670,80,25]}
+{"kind":"textbox","id":"sh/jm5w3eto","slide":2,"text":"À faire une seule fois","textPreview":"À faire une seule fois","textChars":22,"textLines":1,"bbox":[72,149,1050,45]}
+{"kind":"textbox","id":"sh/sbedg3a5","slide":2,"text":"Demandez un lien d’invitation à Romain.","textPreview":"Demandez un lien d’invitation à Romain.","textChars":39,"textLines":1,"bbox":[72,230,1080,55]}
+{"kind":"textbox","id":"sh/dc7e98rq","slide":2,"text":"Ouvrez le lien et notez votre identifiant.","textPreview":"Ouvrez le lien et notez votre identifiant.","textChars":42,"textLines":1,"bbox":[72,307,1080,55]}
+{"kind":"textbox","id":"sh/6pwvetsz","slide":2,"text":"Choisissez un mot de passe de 10 caractères minimum,\npuis retapez-le dans le deuxième champ.","textPreview":"Choisissez un mot de passe de 10 caractères minimum, | puis retapez-le dans le deuxième champ.","textChars":92,"textLines":2,"bbox":[72,384,1080,94]}
+{"kind":"textbox","id":"sh/ra5w7y9k","slide":2,"text":"Cliquez sur « Créer mon accès ».","textPreview":"Cliquez sur « Créer mon accès ».","textChars":32,"textLines":1,"bbox":[72,504,1080,60]}
+{"kind":"textbox","id":"sh/0fyx43a1","slide":2,"text":"Vous avez déjà un compte ? Passez directement à la page suivante.","textPreview":"Vous avez déjà un compte ? Passez directement à la page suivante.","textChars":65,"textLines":1,"bbox":[72,605,1128,55]}
+{"kind":"notes","id":"nt/fu1nkx","slide":2,"text":"Romain prépare l’invitation et l’identifiant. L’utilisateur choisit uniquement son mot de passe. Après « Créer mon accès », le site ouvre l’espace de rédaction."}
+{"kind":"slide","id":"sl/ze6lch","slide":3,"title":"2. La connexion","textShapes":7}
+{"kind":"textbox","id":"sh/2d4z61ov","slide":3,"text":"2. La connexion","textPreview":"2. La connexion","textChars":15,"textLines":1,"bbox":[72,58,1136,70]}
+{"kind":"textbox","id":"sh/pgfihgn6","slide":3,"text":"3 / 12","textPreview":"3 / 12","textChars":6,"textLines":1,"bbox":[1140,670,80,25]}
+{"kind":"textbox","id":"sh/ofmh8b61","slide":3,"text":"Ouvrez cette adresse dans votre navigateur :","textPreview":"Ouvrez cette adresse dans votre navigateur :","textChars":44,"textLines":1,"bbox":[72,171,1120,50]}
+{"kind":"textbox","id":"sh/b2x0jq5c","slide":3,"text":"https://bischwiller-echecs.com/admin","textPreview":"https://bischwiller-echecs.com/admin","textChars":36,"textLines":1,"bbox":[72,245,1130,65]}
+{"kind":"textbox","id":"sh/qhojalor","slide":3,"text":"Saisissez votre identifiant et votre mot de passe.","textPreview":"Saisissez votre identifiant et votre mot de passe.","textChars":50,"textLines":1,"bbox":[72,368,1100,60]}
+{"kind":"textbox","id":"sh/d4filgni","slide":3,"text":"Cliquez sur « Se connecter ».","textPreview":"Cliquez sur « Se connecter ».","textChars":29,"textLines":1,"bbox":[72,455,1100,65]}
+{"kind":"textbox","id":"sh/c361cv6x","slide":3,"text":"Mot de passe oublié ? Demandez un nouveau lien à Romain.","textPreview":"Mot de passe oublié ? Demandez un nouveau lien à Romain.","textChars":56,"textLines":1,"bbox":[72,605,1128,55]}
+{"kind":"notes","id":"nt/ze6lch","slide":3,"text":""}
+{"kind":"slide","id":"sl/r3qy1d","slide":4,"title":"3. Un nouvel article","textShapes":4}
+{"kind":"textbox","id":"sh/qdc72xoj","slide":4,"text":"3. Un nouvel article","textPreview":"3. Un nouvel article","textChars":20,"textLines":1,"bbox":[72,58,1136,70]}
+{"kind":"textbox","id":"sh/dg3qxcna","slide":4,"text":"4 / 12","textPreview":"4 / 12","textChars":6,"textLines":1,"bbox":[1140,670,80,25]}
+{"kind":"textbox","id":"sh/cfu9476p","slide":4,"text":"Sur l’accueil de l’espace admin, cliquez sur\n« Écrire un nouvel article ».","textPreview":"Sur l’accueil de l’espace admin, cliquez sur | « Écrire un nouvel article ».","textChars":74,"textLines":2,"bbox":[72,158,1136,95]}
+{"kind":"textbox","id":"sh/2ps7ydon","slide":4,"text":"Le formulaire de rédaction s’ouvre.","textPreview":"Le formulaire de rédaction s’ouvre.","textChars":35,"textLines":1,"bbox":[72,559,1128,55]}
+{"kind":"image","id":"im/alsj2lwf","slide":4,"name":"","alt":"Accueil de l’espace de rédaction avec le bouton Écrire un nouvel article","bbox":[72,305,1136,167.09]}
+{"kind":"notes","id":"nt/r3qy1d","slide":4,"text":"Capture d’écran : document fourni, diapositive 4. Le bouton se trouve en haut de l’accueil de l’espace de rédaction."}
+{"kind":"slide","id":"sl/c180ra","slide":5,"title":"4. Le titre de l’article","textShapes":5}
+{"kind":"textbox","id":"sh/9g7yhkzy","slide":5,"text":"4. Le titre de l’article","textPreview":"4. Le titre de l’article","textChars":24,"textLines":1,"bbox":[72,58,1136,70]}
+{"kind":"textbox","id":"sh/mdwzm5gn","slide":5,"text":"5 / 12","textPreview":"5 / 12","textChars":6,"textLines":1,"bbox":[1140,670,80,25]}
+{"kind":"textbox","id":"sh/ne5gfahs","slide":5,"text":"Dans « Le titre », écrivez une phrase courte et précise.","textPreview":"Dans « Le titre », écrivez une phrase courte et précise.","textChars":56,"textLines":1,"bbox":[72,167,1136,70]}
+{"kind":"textbox","id":"sh/x47il4za","slide":5,"text":"Exemple","textPreview":"Exemple","textChars":7,"textLines":1,"bbox":[72,551,250,40]}
+{"kind":"textbox","id":"sh/ahgzqpgj","slide":5,"text":"Victoire de l’équipe 1 contre Metz","textPreview":"Victoire de l’équipe 1 contre Metz","textChars":34,"textLines":1,"bbox":[72,597,1136,50]}
+{"kind":"image","id":"im/18vmhszy","slide":5,"name":"","alt":"Champ Le titre, obligatoire","bbox":[72,272,1136,241.21]}
+{"kind":"notes","id":"nt/c180ra","slide":5,"text":"Capture d’écran : document fourni, diapositive 5. Le titre est obligatoire. Exemple de titre fictif, à remplacer par celui de votre article."}
+{"kind":"slide","id":"sl/svkgza","slide":6,"title":"5. La photo principale","textShapes":5}
+{"kind":"textbox","id":"sh/gfi5kz61","slide":6,"text":"5. La photo principale","textPreview":"5. La photo principale","textChars":22,"textLines":1,"bbox":[72,58,1136,70]}
+{"kind":"textbox","id":"sh/ve9obu5w","slide":6,"text":"6 / 12","textPreview":"6 / 12","textChars":6,"textLines":1,"bbox":[1140,670,80,25]}
+{"kind":"textbox","id":"sh/udgnipob","slide":6,"text":"Facultatif : vous pouvez publier sans photo.","textPreview":"Facultatif : vous pouvez publier sans photo.","textChars":44,"textLines":1,"bbox":[72,158,1136,55]}
+{"kind":"textbox","id":"sh/tc769knq","slide":6,"text":"Cliquez sur « Choisir une photo ».\nSélectionnez une image sur votre ordinateur.\nAttendez qu’elle s’affiche.","textPreview":"Cliquez sur « Choisir une photo ». | Sélectionnez une image sur votre ordinateur. | Attendez qu’elle s’affiche.","textChars":107,"textLines":3,"bbox":[72,266,472,185]}
+{"kind":"textbox","id":"sh/8by5gf65","slide":6,"text":"Cette photo apparaîtra\nen haut de l’article.","textPreview":"Cette photo apparaîtra | en haut de l’article.","textChars":44,"textLines":2,"bbox":[72,512,460,90]}
+{"kind":"image","id":"im/u5gb2lkn","slide":6,"name":"","alt":"Zone La photo principale avec Choisir une photo","bbox":[590,255,618,241.98]}
+{"kind":"notes","id":"nt/svkgza","slide":6,"text":"Capture d’écran : document fourni, diapositive 5. La photo principale est facultative et s’affiche aussi dans la liste des actualités."}
+{"kind":"slide","id":"sl/etl0hc","slide":7,"title":"6. Le texte de l’article","textShapes":6}
+{"kind":"textbox","id":"sh/elo3uhoj","slide":7,"text":"6. Le texte de l’article","textPreview":"6. Le texte de l’article","textChars":24,"textLines":1,"bbox":[72,58,1136,70]}
+{"kind":"textbox","id":"sh/18zm5w7a","slide":7,"text":"7 / 12","textPreview":"7 / 12","textChars":6,"textLines":1,"bbox":[1140,670,80,25]}
+{"kind":"textbox","id":"sh/0nqlwr6p","slide":7,"text":"Descendez jusqu’à « Le texte », puis écrivez votre article.","textPreview":"Descendez jusqu’à « Le texte », puis écrivez votre article.","textChars":59,"textLines":1,"bbox":[72,165,1136,85]}
+{"kind":"textbox","id":"sh/rixkz2p8","slide":7,"text":"Racontez ce qui s’est passé, où et quand.\nFaites des paragraphes courts.","textPreview":"Racontez ce qui s’est passé, où et quand. | Faites des paragraphes courts.","textChars":72,"textLines":2,"bbox":[72,283,1130,100]}
+{"kind":"textbox","id":"sh/qho3qxon","slide":7,"text":"La rubrique est facultative","textPreview":"La rubrique est facultative","textChars":27,"textLines":1,"bbox":[72,451,1136,45]}
+{"kind":"textbox","id":"sh/dkf21c7y","slide":7,"text":"Dans « La rubrique », choisissez le thème qui convient.\nVous pouvez laisser ce choix vide.","textPreview":"Dans « La rubrique », choisissez le thème qui convient. | Vous pouvez laisser ce choix vide.","textChars":90,"textLines":2,"bbox":[72,509,1136,95]}
+{"kind":"notes","id":"nt/etl0hc","slide":7,"text":"Le titre et le texte sont les seuls champs obligatoires. Pour ajouter une photo dans le texte, cliquez à l’endroit souhaité puis sur « Ajouter des photos ». Pour joindre un document, utilisez « Joindre un PDF ». Ces options sont facultatives."}
+{"kind":"slide","id":"sl/fnj044","slide":8,"title":"7. L’aperçu avant publication","textShapes":6}
+{"kind":"textbox","id":"sh/s32hczmd","slide":8,"text":"7. L’aperçu avant publication","textPreview":"7. L’aperçu avant publication","textChars":29,"textLines":1,"bbox":[72,58,1136,70]}
+{"kind":"textbox","id":"sh/r2t0ju5s","slide":8,"text":"8 / 12","textPreview":"8 / 12","textChars":6,"textLines":1,"bbox":[1140,670,80,25]}
+{"kind":"textbox","id":"sh/61kza947","slide":8,"text":"En bas de la page, cliquez sur « Aperçu ».","textPreview":"En bas de la page, cliquez sur « Aperçu ».","textChars":42,"textLines":1,"bbox":[72,170,1136,75]}
+{"kind":"textbox","id":"sh/g7mhgjm9","slide":8,"text":"Vérifiez le titre et le texte.\nRegardez aussi la photo, si vous en avez ajouté une.","textPreview":"Vérifiez le titre et le texte. | Regardez aussi la photo, si vous en avez ajouté une.","textChars":83,"textLines":2,"bbox":[460,279,735,145]}
+{"kind":"textbox","id":"sh/f6d0nel4","slide":8,"text":"Pour revenir au formulaire, cliquez sur « Continuer à modifier ».","textPreview":"Pour revenir au formulaire, cliquez sur « Continuer à modifier ».","textChars":65,"textLines":1,"bbox":[72,514,1136,85]}
+{"kind":"textbox","id":"sh/e54ze94j","slide":8,"text":"L’aperçu permet de vérifier le résultat avant de le rendre visible.","textPreview":"L’aperçu permet de vérifier le résultat avant de le rendre visible.","textChars":67,"textLines":1,"bbox":[72,619,1128,55]}
+{"kind":"image","id":"im/sf6xs3a5","slide":8,"name":"","alt":"Bouton Aperçu","bbox":[72,290,320,141.05]}
+{"kind":"notes","id":"nt/fnj044","slide":8,"text":"Capture d’écran : document fourni, diapositive 6. L’aperçu ne publie pas l’article. « Continuer à modifier » permet de revenir à la rédaction."}
+{"kind":"slide","id":"sl/o8pgwv","slide":9,"title":"8. La publication","textShapes":6}
+{"kind":"textbox","id":"sh/zqxo3q1k","slide":9,"text":"8. La publication","textPreview":"8. La publication","textChars":17,"textLines":1,"bbox":[72,58,1136,70]}
+{"kind":"textbox","id":"sh/0b65cbip","slide":9,"text":"9 / 12","textPreview":"9 / 12","textChars":6,"textLines":1,"bbox":[1140,670,80,25]}
+{"kind":"textbox","id":"sh/1cf65gja","slide":9,"text":"Quand tout est prêt, cliquez sur « Publier l’article ».","textPreview":"Quand tout est prêt, cliquez sur « Publier l’article ».","textChars":55,"textLines":1,"bbox":[72,167,1136,75]}
+{"kind":"textbox","id":"sh/nexo7q1g","slide":9,"text":"Attendez le message\n« C’est en ligne ! »","textPreview":"Attendez le message | « C’est en ligne ! »","textChars":40,"textLines":2,"bbox":[574,282,630,110]}
+{"kind":"textbox","id":"sh/of65gvi1","slide":9,"text":"Cliquez ensuite sur « Voir l’article sur le site »\npour vérifier le résultat.","textPreview":"Cliquez ensuite sur « Voir l’article sur le site » | pour vérifier le résultat.","textChars":77,"textLines":2,"bbox":[72,493,1136,105]}
+{"kind":"textbox","id":"sh/9gf690jm","slide":9,"text":"Votre article est maintenant visible par les visiteurs.","textPreview":"Votre article est maintenant visible par les visiteurs.","textChars":55,"textLines":1,"bbox":[72,618,1128,55]}
+{"kind":"image","id":"im/3yhkbm9c","slide":9,"name":"","alt":"Bouton Publier l’article","bbox":[72,285,425,140.35]}
+{"kind":"notes","id":"nt/o8pgwv","slide":9,"text":"Capture d’écran : document fourni, diapositive 6. Après la confirmation « C’est en ligne ! Votre article est visible sur le site. », le bouton « Voir l’article sur le site » ouvre la page publique."}
+{"kind":"slide","id":"sl/lxhbkl","slide":10,"title":"Finir plus tard","textShapes":6}
+{"kind":"textbox","id":"sh/psrat47q","slide":10,"text":"Finir plus tard","textPreview":"Finir plus tard","textChars":15,"textLines":1,"bbox":[72,58,1136,70]}
+{"kind":"textbox","id":"sh/2pgrypoz","slide":10,"text":"10 / 12","textPreview":"10 / 12","textChars":7,"textLines":1,"bbox":[1140,670,80,25]}
+{"kind":"textbox","id":"sh/3q9srupk","slide":10,"text":"Cliquez sur « Enregistrer sans publier ».","textPreview":"Cliquez sur « Enregistrer sans publier ».","textChars":41,"textLines":1,"bbox":[72,168,1136,75]}
+{"kind":"textbox","id":"sh/dwrax472","slide":10,"text":"Attendez le message\n« Brouillon enregistré. »","textPreview":"Attendez le message | « Brouillon enregistré. »","textChars":45,"textLines":2,"bbox":[600,281,608,100]}
+{"kind":"textbox","id":"sh/qt0r29ob","slide":10,"text":"Sur l’accueil de l’espace admin, retrouvez votre article dans\n« Brouillons à terminer », puis cliquez sur « Reprendre ».","textPreview":"Sur l’accueil de l’espace admin, retrouvez votre article dans | « Brouillons à terminer », puis cliquez sur « Reprendre ».","textChars":120,"textLines":2,"bbox":[72,476,1136,106]}
+{"kind":"textbox","id":"sh/bu9svupw","slide":10,"text":"Un brouillon n’apparaît pas sur le site. Pensez à enregistrer avant de quitter.","textPreview":"Un brouillon n’apparaît pas sur le site. Pensez à enregistrer avant de quitter.","textChars":79,"textLines":1,"bbox":[72,615,1128,55]}
+{"kind":"image","id":"im/x03ixkzy","slide":10,"name":"","alt":"Bouton Enregistrer sans publier","bbox":[72,278,470,139.04]}
+{"kind":"notes","id":"nt/lxhbkl","slide":10,"text":"Capture d’écran : document fourni, diapositive 6. Un brouillon reste invisible sur le site. L’enregistrement n’est pas automatique."}
+{"kind":"slide","id":"sl/jkvkrj","slide":11,"title":"Modifier un article publié","textShapes":5}
+{"kind":"textbox","id":"sh/6lc32h8v","slide":11,"text":"Modifier un article publié","textPreview":"Modifier un article publié","textChars":26,"textLines":1,"bbox":[72,58,1136,70]}
+{"kind":"textbox","id":"sh/tonmdcrm","slide":11,"text":"11 / 12","textPreview":"11 / 12","textChars":7,"textLines":1,"bbox":[1140,670,80,25]}
+{"kind":"textbox","id":"sh/snel4rq1","slide":11,"text":"Sur l’accueil de l’espace admin, cliquez sur\nle titre de l’article à corriger.","textPreview":"Sur l’accueil de l’espace admin, cliquez sur | le titre de l’article à corriger.","textChars":78,"textLines":2,"bbox":[72,154,1136,92]}
+{"kind":"textbox","id":"sh/ixc3yx8z","slide":11,"text":"Faites vos corrections, puis cliquez sur\n« Enregistrer les modifications ».","textPreview":"Faites vos corrections, puis cliquez sur | « Enregistrer les modifications ».","textChars":75,"textLines":2,"bbox":[72,436,630,115]}
+{"kind":"textbox","id":"sh/4jul07qp","slide":11,"text":"Vérifiez ensuite la page de l’article sur le site.","textPreview":"Vérifiez ensuite la page de l’article sur le site.","textChars":50,"textLines":1,"bbox":[72,615,1128,55]}
+{"kind":"image","id":"im/61cj2tsn","slide":11,"name":"","alt":"Un article dans la liste de l’espace de rédaction","bbox":[72,260,1136,111.53]}
+{"kind":"image","id":"im/s3u14jad","slide":11,"name":"","alt":"Bouton Enregistrer les modifications","bbox":[773,442,435,98.54]}
+{"kind":"notes","id":"nt/jkvkrj","slide":11,"text":"Captures d’écran : document fourni, diapositives 4 et 7. Cliquez sur le titre de l’article dans la liste pour ouvrir la rédaction. Le lien « Voir » sert à consulter l’article."}
+{"kind":"slide","id":"sl/y61cru","slide":12,"title":"Retirer ou supprimer un article","textShapes":7}
+{"kind":"textbox","id":"sh/0rets3ep","slide":12,"text":"Retirer ou supprimer un article","textPreview":"Retirer ou supprimer un article","textChars":31,"textLines":1,"bbox":[72,58,1136,70]}
+{"kind":"textbox","id":"sh/fqlszyd4","slide":12,"text":"12 / 12","textPreview":"12 / 12","textChars":7,"textLines":1,"bbox":[1140,670,80,25]}
+{"kind":"textbox","id":"sh/epcbqtwj","slide":12,"text":"Ouvrez l’article dans l’espace admin, puis descendez\njusqu’à « Autres actions ».","textPreview":"Ouvrez l’article dans l’espace admin, puis descendez | jusqu’à « Autres actions ».","textChars":80,"textLines":2,"bbox":[72,149,1136,87]}
+{"kind":"textbox","id":"sh/s3u9ojed","slide":12,"text":"Le garder pour plus tard","textPreview":"Le garder pour plus tard","textChars":24,"textLines":1,"bbox":[72,528,552,45]}
+{"kind":"textbox","id":"sh/r2lsveds","slide":12,"text":"« Retirer du site (garder en brouillon) ».\nConfirmez : l’article reste dans l’espace admin.","textPreview":"« Retirer du site (garder en brouillon) ». | Confirmez : l’article reste dans l’espace admin.","textChars":91,"textLines":2,"bbox":[72,582,551,80]}
+{"kind":"textbox","id":"sh/q1crmtwn","slide":12,"text":"L’effacer définitivement","textPreview":"L’effacer définitivement","textChars":24,"textLines":1,"bbox":[704,528,504,45]}
+{"kind":"textbox","id":"sh/503atov2","slide":12,"text":"« Supprimer l’article », puis confirmer.\nL’article disparaît aussi de l’espace admin.","textPreview":"« Supprimer l’article », puis confirmer. | L’article disparaît aussi de l’espace admin.","textChars":85,"textLines":2,"bbox":[704,582,504,74]}
+{"kind":"image","id":"im/ov254zel","slide":12,"name":"","alt":"Autres actions : Retirer du site (garder en brouillon) et Supprimer l’article","bbox":[72,250,1136,243.8]}
+{"kind":"notes","id":"nt/y61cru","slide":12,"text":"Capture d’écran : document fourni, diapositive 7. Ouvrez l’article concerné, puis descendez jusqu’à « Autres actions ». Une confirmation est demandée. La suppression retire définitivement l’article du site et de l’espace admin."}

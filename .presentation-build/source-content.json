@@ -1,0 +1,91 @@
+[
+  {
+    "slide": "ppt/slides/slide1.xml",
+    "text": [
+      "Comment publier des articles sur le site",
+      null
+    ],
+    "images": []
+  },
+  {
+    "slide": "ppt/slides/slide2.xml",
+    "text": [
+      "Etape 1",
+      "Création du compte.",
+      "→ Demander Romain",
+      "(je crée une invitation aux personnes qui souhaitent publier des articles)"
+    ],
+    "images": []
+  },
+  {
+    "slide": "ppt/slides/slide3.xml",
+    "text": [
+      "Etape 2 ",
+      "se rendre sur : ",
+      "https://bischwiller-echecs.com/admin",
+      " et se connecter avec son compte."
+    ],
+    "images": []
+  },
+  {
+    "slide": "ppt/slides/slide4.xml",
+    "text": [
+      "Etape 3 ",
+      "Une fois connecté, cliquer sur “Ecrire un nouvel Article"
+    ],
+    "images": [
+      {
+        "Id": "rId3",
+        "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image",
+        "Target": "../media/image1.png"
+      }
+    ]
+  },
+  {
+    "slide": "ppt/slides/slide5.xml",
+    "text": [
+      "Etape 4 remplir tous les champs nécessaires",
+      null
+    ],
+    "images": [
+      {
+        "Id": "rId3",
+        "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image",
+        "Target": "../media/image2.png"
+      }
+    ]
+  },
+  {
+    "slide": "ppt/slides/slide6.xml",
+    "text": [
+      "Etape 5 ",
+      "Cliquer sur Publier l’article.",
+      null,
+      null,
+      null,
+      null,
+      "Remarque : il est possible d’avoir un apercu avant de publier l’article"
+    ],
+    "images": [
+      {
+        "Id": "rId3",
+        "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image",
+        "Target": "../media/image3.png"
+      }
+    ]
+  },
+  {
+    "slide": "ppt/slides/slide7.xml",
+    "text": [
+      "Optionnel",
+      "il est possible de modifier/supprimer un article existant, en cliquant dessus depuis l’accueil de la page admin."
+    ],
+    "images": [
+      {
+        "Id": "rId3",
+        "Type": "http://schemas.openxmlformats.org/officeDocument/2006/relationships/image",
+        "Target": "../media/image4.png"
+      }
+    ]
+  }
+]
