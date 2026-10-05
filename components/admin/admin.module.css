@@ -223,6 +223,22 @@ button.barLink{padding:0;background:none;border:0;font-family:inherit;cursor:poi
 .paginationInfo{color:var(--text-body);font-weight:600}
 .empty{padding:48px 24px;color:var(--text-body);text-align:center;background:#fff;border:2px dashed #d3d7de;border-radius:20px}
 
+/* Contenu à la une : l’interrupteur dit aussi son état en toutes lettres. */
+.switchCard{max-width:860px;margin-bottom:20px;padding:22px clamp(18px,3vw,32px);background:#fff;border:1px solid var(--line);border-radius:20px}
+.switchTitle{margin:0 0 14px;font-size:1.15rem;font-weight:800}
+.switchRow{display:flex;align-items:flex-start;gap:16px;cursor:pointer}
+.switch{position:relative;flex:none;width:62px;height:34px}
+.switch input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.switchTrack{display:block;width:62px;height:34px;background:#b9bfc9;border-radius:999px;transition:background-color .15s}
+.switchTrack::after{position:absolute;top:4px;left:4px;width:26px;height:26px;background:#fff;border-radius:50%;box-shadow:0 1px 3px rgb(17 21 29/.35);content:"";transition:transform .15s}
+.switch input:checked+.switchTrack{background:#1f7a45}
+.switch input:checked+.switchTrack::after{transform:translateX(28px)}
+.switch input:focus-visible+.switchTrack{outline:3px solid var(--blue);outline-offset:2px}
+.switchText{display:flex;flex-direction:column;gap:2px}
+.switchText strong{font-size:1.05rem}
+.switchText small{color:var(--muted);font-size:.95rem;line-height:1.45}
+.pageHead .pageHeadMeta{margin:10px 0 0;color:var(--muted);font-size:.95rem}
+
 /* Comptes et liens d’accès */
 .inviteForm{max-width:860px;padding:24px clamp(18px,3vw,32px) 26px;background:#fff;border:1px solid var(--line);border-radius:20px}
 .roles{margin:0 0 22px;padding:0;border:0}
@@ -273,4 +289,4 @@ button.barLink{padding:0;background:none;border:0;font-family:inherit;cursor:poi
 .actionStatus:empty{display:none}
 .actionAlert{order:-3}
 }
-@media(prefers-reduced-motion:reduce){.button,.buttonGhost,.buttonDanger,.chip,.addButton,.dropzone,.row,.draftCard,.more>summary::before{transition:none}.draftCard:hover{transform:none}.spinner{animation-duration:2.4s}}
+@media(prefers-reduced-motion:reduce){.button,.buttonGhost,.buttonDanger,.chip,.addButton,.dropzone,.row,.draftCard,.more>summary::before,.switchTrack,.switchTrack::after{transition:none}.draftCard:hover{transform:none}.spinner{animation-duration:2.4s}}
