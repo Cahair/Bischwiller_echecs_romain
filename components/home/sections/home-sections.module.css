@@ -47,16 +47,18 @@
 .formationImage img,.committeeImage img{object-fit:cover;filter:var(--photo-natural)}
 .formationCopy,.committeeCopy{display:flex;flex-direction:column;justify-content:center;padding:clamp(50px,7vw,110px)}
 .formation h2,.committee h2{font-size:clamp(3rem,5.8vw,5.8rem)}.formationCopy>p,.committeeCopy>p{color:var(--text-body);line-height:1.75}
-/* Contenu à la une, écrit depuis l’espace admin : même langage que « Formation ». */
-.headline{display:grid;grid-template-columns:1.05fr .95fr;align-items:center;background:radial-gradient(900px 480px at 92% 0,var(--halo),transparent 60%) var(--paper);color:var(--ink)}
-.headlineImage{position:relative;aspect-ratio:var(--photo-ratio,3/2);align-self:center;margin:clamp(24px,4vw,60px);overflow:hidden;border-radius:var(--radius-lg);box-shadow:var(--shadow-float)}
-.headlineImage img{object-fit:cover;filter:var(--photo-natural)}
-.headlineCopy{display:flex;flex-direction:column;justify-content:center;padding:clamp(40px,6vw,90px)}
-.headlineCopy h2{margin:18px 0 0;font-family:var(--font-serif);font-size:clamp(2.4rem,4.6vw,4.6rem);font-weight:400;line-height:.98;letter-spacing:-.03em}
+/* Contenu à la une, écrit depuis l’espace admin. Reprend le bandeau d’annonce
+   d’origine — damier discret sur fond sombre, carte de verre dépoli — en
+   bande courte : il précède la page, il ne doit pas la retenir. */
+.headline{padding:clamp(22px,3vw,44px) max(24px,calc((100vw - 1240px)/2));color:#f5f2e9;background-color:var(--ink);background-image:radial-gradient(900px 520px at 86% -12%,var(--halo-strong),transparent 60%),repeating-conic-gradient(rgb(255 255 255/.022) 0% 25%,transparent 0% 50%);background-size:auto,96px 96px}
+.headlineCard{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(20px,3.5vw,52px);align-items:center;padding:clamp(22px,2.6vw,34px);background:var(--glass-clear-bg);border:1px solid var(--glass-clear-border);border-radius:var(--radius-lg);box-shadow:var(--edge-light-strong);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
+.headlineEyebrow{display:block;color:var(--blue-on-dark);font-size:.7rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+.headlineCopy h2{margin:12px 0 0;color:#fff;font-family:var(--font-serif);font-size:clamp(1.9rem,3.4vw,3rem);font-weight:400;line-height:1.02;letter-spacing:-.03em}
 /* Les retours à la ligne tapés dans l’espace admin sont gardés tels quels. */
-.headlineCopy>p{margin:22px 0 0;color:var(--text-body);font-size:1.05rem;line-height:1.75;white-space:pre-line}
-.headlineAlone{grid-template-columns:1fr}
-.headlineAlone .headlineCopy{width:min(900px,100%);margin:0 auto}
+.headlineCopy>p{max-width:62ch;margin:12px 0 0;color:var(--text-muted-dark);line-height:1.65;white-space:pre-line}
+/* Cartouche blanc : un QR code y reste lisible, une photo y tient sans étirer la bande. */
+.headlineMedia{display:grid;padding:12px;background:#fff;border-radius:var(--radius-md);box-shadow:var(--shadow-float)}
+.headlineMedia img{display:block;width:clamp(140px,16vw,210px);height:auto;max-height:230px;border-radius:10px;object-fit:contain}
 .labels{display:flex;align-items:center;gap:18px;margin:26px 0}.labels img{width:auto;height:118px;padding:14px;object-fit:contain;background:#fff;border:1px solid var(--glass-milk-border);border-radius:var(--radius-sm);box-shadow:var(--shadow-ambient),var(--edge-light)}
 .teams>.sectionTitle{display:grid;grid-template-columns:1fr .65fr;gap:80px;align-items:end;margin-bottom:60px}.teams>.sectionTitle p{margin:0}
 .teamList{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
@@ -81,14 +83,15 @@
 .visitInfo p{margin:0;padding:26px 30px;font-size:1.05rem;line-height:1.7;background:rgb(255 255 255/.14);border:1px solid rgb(255 255 255/.3);border-radius:var(--radius-md);box-shadow:var(--edge-light-strong);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
 .visitInfo .lightButton{margin-top:22px}
 .visit .lightButton{background:var(--ink);border-color:rgb(255 255 255/.25);box-shadow:0 16px 40px rgb(7 11 17/.35),var(--edge-light-strong);backdrop-filter:none;-webkit-backdrop-filter:none}
-@media(max-width:1000px){.introGrid,.programs{grid-template-columns:1fr}.introCopy{padding-top:0}.textLink{min-height:34px;padding-bottom:4px}.newsGrid{grid-template-columns:1fr}.newsSide{grid-template-columns:repeat(2,1fr)}.formation,.committee,.headline{grid-template-columns:1fr}.committeeCopy{order:2}.committeeImage{order:1}}
-@media(max-width:700px){.intro,.news,.teams,.partners{padding-right:18px;padding-left:18px}
+@media(max-width:1000px){.introGrid,.programs{grid-template-columns:1fr}.introCopy{padding-top:0}.textLink{min-height:34px;padding-bottom:4px}.newsGrid{grid-template-columns:1fr}.newsSide{grid-template-columns:repeat(2,1fr)}.formation,.committee{grid-template-columns:1fr}.headlineCard{grid-template-columns:1fr;justify-items:start}.committeeCopy{order:2}.committeeImage{order:1}}
+@media(max-width:700px){.intro,.news,.teams,.partners,.headline{padding-right:18px;padding-left:18px}
+.headlineCard{gap:18px;padding:20px}.headlineMedia img{width:clamp(130px,38vw,190px)}
 .introGrid{gap:26px}.introCopy .lead{margin-bottom:20px;font-size:clamp(1.35rem,5.4vw,2.25rem)}.introCopy>p:not(.lead){line-height:1.7}.outlineButton{margin-top:22px}.lightButton{margin-top:26px}
 .stats{grid-template-columns:repeat(2,1fr);gap:12px;margin-top:40px}.stats div{min-height:112px;padding:18px}.stats strong{font-size:clamp(2rem,9vw,2.6rem)}.stats span{margin-top:5px;font-size:.7rem}
 .sectionBar{display:grid;justify-items:start;margin-bottom:26px}.sectionTitle p{margin-top:18px;font-size:1rem}
 .newsGrid{gap:16px}.newsSide{grid-template-columns:1fr;gap:16px}.newsImage{min-height:0}.newsFeatured{grid-template-rows:min(58vw,280px) auto}.newsCard{grid-template-rows:min(46vw,220px) auto}.newsCopy{padding:20px}.newsCopy h3{margin:12px 0}.newsCard .newsCopy{padding:18px}
 .programs{padding-right:16px;padding-left:16px}.programCards{gap:14px}.programCards>a{grid-template-columns:36px 1fr;gap:12px;padding:22px 20px}.programNumber{padding-top:5px;font-size:.62rem}.programCards strong{gap:12px;margin-top:16px}.programCards strong svg{width:36px;height:36px;padding:9px}
-.formation,.committee{min-height:0}.formationImage,.committeeImage,.headlineImage{margin:14px}.formationCopy,.committeeCopy,.headlineCopy{padding:34px 20px 40px}.committeeImage small{right:10px;bottom:10px}
+.formation,.committee{min-height:0}.formationImage,.committeeImage{margin:14px}.formationCopy,.committeeCopy{padding:34px 20px 40px}.committeeImage small{right:10px;bottom:10px}
 .labels{gap:12px;margin:20px 0}.labels img{height:84px;padding:9px}
 .teams>.sectionTitle{grid-template-columns:1fr;gap:12px;margin-bottom:26px}.teamList{grid-template-columns:1fr;gap:12px}.teamList a{padding:20px}.teamList span{width:40px;height:40px;border-radius:12px}.teamList h3{margin:14px 0 4px}.teamList svg{width:38px;height:38px;padding:10px}
 .palmares{min-height:min(86svh,600px);padding-right:16px;padding-left:16px}.palmaresCopy{padding:24px 20px}.palmaresCopy p{margin:14px 0 0;font-size:1rem}
