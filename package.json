@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "node scripts/build.mjs",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint .",
     "wordpress:audit": "node scripts/wordpress/parse-export.mjs",

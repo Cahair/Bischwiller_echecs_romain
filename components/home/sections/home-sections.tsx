@@ -3,7 +3,6 @@ import Link from "next/link";
 import generatedArticles from "@/data/generated/article-index.json";
 import { SponsorGrid } from "@/components/sponsors/sponsor-grid";
 import { getLocalArticleIndex, mergeArticles } from "@/lib/articles";
-import { featuredParagraphs, visibleFeatured } from "@/lib/featured";
 import { photoFrame } from "@/lib/image-size";
 import { sponsors } from "@/lib/sponsors";
 import styles from "./home-sections.module.css";
@@ -70,33 +69,6 @@ export function ClubIntro() {
         <div><strong>5×</strong><span>Champion de France</span></div>
         <div><strong>4</strong><span>Équipes nationales</span></div>
         <div><strong>7–77</strong><span>Pour tous les âges</span></div>
-      </div>
-    </section>
-  );
-}
-
-/**
- * Le contenu mis à la une depuis l’espace admin. Interrupteur éteint, rien
- * n’est rendu : la page d’accueil reprend sa forme habituelle, sans trou.
- */
-export function Headline() {
-  const featured = visibleFeatured();
-  if (!featured) return null;
-  return (
-    <section
-      className={`${styles.headline} ${featured.image ? "" : styles.headlineAlone}`}
-      aria-labelledby="headline-title"
-      data-reveal
-    >
-      {featured.image ? (
-        <div className={styles.headlineImage} style={photoFrame(featured.image)}>
-          <Image src={featured.image} alt={featured.imageAlt} fill quality={90} sizes="(max-width: 1000px) 100vw, 52vw" />
-        </div>
-      ) : null}
-      <div className={styles.headlineCopy}>
-        <span className={styles.index}>À LA UNE</span>
-        <h2 id="headline-title">{featured.title}</h2>
-        {featuredParagraphs(featured.text).map((paragraph) => <p key={paragraph.slice(0, 40)}>{paragraph}</p>)}
       </div>
     </section>
   );
@@ -174,5 +146,5 @@ export function Visit() {
 }
 
 export function HomeSections() {
-  return <><Headline /><LatestNews /><ClubIntro /><Registrations /><Formation /><Teams /><Palmares /><Committee /><Partners /><Visit /></>;
+  return <><LatestNews /><ClubIntro /><Registrations /><Formation /><Teams /><Palmares /><Committee /><Partners /><Visit /></>;
 }

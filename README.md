@@ -54,14 +54,13 @@ Les comptes vivent dans `data/admin/users.json`, hors du dépôt : seul le conde
 - envoyer photos et PDF (15 Mo maximum, contenu vérifié à l'octet près). Les photos de téléphone sont réduites à 2 400 px dans le navigateur avant l'envoi ;
 - garder un article en brouillon : il reste listé dans l'admin, invisible sur le site ;
 - modifier ou supprimer un article maison ;
-- **mettre un contenu à la une** (page « À la une », ouverte à tous les comptes) : un titre, un texte, une photo, et un interrupteur. Allumé, le bloc s'affiche en haut de la page d'accueil, juste sous la vidéo ; éteint, il disparaît du site sans rien effacer. Le tout vit dans `content/a-la-une.json`, repris dans Git comme les articles (`lib/featured.ts`) ;
 - **inviter des membres sans leur écrire de mot de passe** (page « Comptes », réservée aux administrateurs) : chaque invitation produit un lien à usage unique, valable 7 jours, où le membre choisit lui-même son mot de passe. Seule l'empreinte SHA-256 du lien est conservée, dans `data/admin/invitations.json`. Le même mécanisme sert aux mots de passe oubliés, et « Retirer l'accès » ferme aussitôt les sessions ouvertes — chaque requête revérifie le compte (`lib/admin/accounts.ts`, `lib/admin/session.ts`) ;
 - limiter les essais de connexion : 5 échecs en 15 minutes bloquent l'identifiant, 20 bloquent l'adresse IP (`lib/admin/throttle.ts`, en mémoire) ;
 - **corriger un article repris de WordPress** : l'enregistrement écrit une copie dans `content/actualites/`, qui masque l'original partout sur le site. `content/articles/` n'est jamais modifié, donc une réimportation ne peut rien écraser, et le bouton « Rétablir la version d'origine » efface simplement la copie.
 
 ### Contraintes d'hébergement
 
-L'espace admin écrit sur le disque : il lui faut un serveur Node persistant (`pnpm build && pnpm start`), pas une plateforme au système de fichiers en lecture seule. **Les sauvegardes doivent couvrir `content/actualites/`, `content/a-la-une.json`, `public/media/actualites/` et `data/admin/`** : c'est là que vit tout ce qui est publié depuis le site, et ces fichiers n'existent que sur le serveur tant qu'ils ne sont pas rapatriés dans Git.
+L'espace admin écrit sur le disque : il lui faut un serveur Node persistant (`pnpm build && pnpm start`), pas une plateforme au système de fichiers en lecture seule. **Les sauvegardes doivent couvrir `content/actualites/`, `public/media/actualites/` et `data/admin/`** : c'est là que vit tout ce qui est publié depuis le site, et ces fichiers n'existent que sur le serveur tant qu'ils ne sont pas rapatriés dans Git.
 
 ## Structure du site
 
