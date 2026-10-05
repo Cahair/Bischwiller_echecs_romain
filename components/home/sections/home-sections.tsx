@@ -3,7 +3,8 @@ import Link from "next/link";
 import generatedArticles from "@/data/generated/article-index.json";
 import { SponsorGrid } from "@/components/sponsors/sponsor-grid";
 import { getLocalArticleIndex, mergeArticles } from "@/lib/articles";
-import { photoFrame } from "@/lib/image-size";
+import { featuredParagraphs, visibleFeatured } from "@/lib/featured";
+import { photoFrame, photoSize } from "@/lib/image-size";
 import { sponsors } from "@/lib/sponsors";
 import styles from "./home-sections.module.css";
 
@@ -69,6 +70,34 @@ export function ClubIntro() {
         <div><strong>5×</strong><span>Champion de France</span></div>
         <div><strong>4</strong><span>Équipes nationales</span></div>
         <div><strong>7–77</strong><span>Pour tous les âges</span></div>
+      </div>
+    </section>
+  );
+}
+
+/**
+ * Le contenu mis à la une depuis l’espace admin. Interrupteur éteint, rien
+ * n’est rendu : la page d’accueil reprend sa forme habituelle, sans trou.
+ */
+export function Headline() {
+  const featured = visibleFeatured();
+  if (!featured) return null;
+  // Dimensions lues sur le disque : l’image garde ses proportions sans que la
+  // bande saute à l’affichage.
+  const size = featured.image ? photoSize(featured.image) : null;
+  return (
+    <section className={styles.headline} aria-labelledby="headline-title" data-reveal>
+      <div className={styles.headlineCard}>
+        <div className={styles.headlineCopy}>
+          <span className={styles.headlineEyebrow}>À LA UNE</span>
+          <h2 id="headline-title">{featured.title}</h2>
+          {featuredParagraphs(featured.text).map((paragraph) => <p key={paragraph.slice(0, 40)}>{paragraph}</p>)}
+        </div>
+        {featured.image ? (
+          <div className={styles.headlineMedia}>
+            <Image src={featured.image} alt={featured.imageAlt} width={size?.[0] ?? 600} height={size?.[1] ?? 600} quality={90} sizes="240px" />
+          </div>
+        ) : null}
       </div>
     </section>
   );
@@ -146,5 +175,5 @@ export function Visit() {
 }
 
 export function HomeSections() {
-  return <><LatestNews /><ClubIntro /><Registrations /><Formation /><Teams /><Palmares /><Committee /><Partners /><Visit /></>;
+  return <><Headline /><LatestNews /><ClubIntro /><Registrations /><Formation /><Teams /><Palmares /><Committee /><Partners /><Visit /></>;
 }

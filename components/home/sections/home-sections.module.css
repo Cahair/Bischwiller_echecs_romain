@@ -47,6 +47,18 @@
 .formationImage img,.committeeImage img{object-fit:cover;filter:var(--photo-natural)}
 .formationCopy,.committeeCopy{display:flex;flex-direction:column;justify-content:center;padding:clamp(50px,7vw,110px)}
 .formation h2,.committee h2{font-size:clamp(3rem,5.8vw,5.8rem)}.formationCopy>p,.committeeCopy>p{color:var(--text-body);line-height:1.75}
+/* Contenu à la une, écrit depuis l’espace admin. Reprend le bandeau d’annonce
+   d’origine — damier discret sur fond sombre, carte de verre dépoli — en
+   bande courte : il précède la page, il ne doit pas la retenir. */
+.headline{padding:clamp(22px,3vw,44px) max(24px,calc((100vw - 1240px)/2));color:#f5f2e9;background-color:var(--ink);background-image:radial-gradient(900px 520px at 86% -12%,var(--halo-strong),transparent 60%),repeating-conic-gradient(rgb(255 255 255/.022) 0% 25%,transparent 0% 50%);background-size:auto,96px 96px}
+.headlineCard{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:clamp(20px,3.5vw,52px);align-items:center;padding:clamp(22px,2.6vw,34px);background:var(--glass-clear-bg);border:1px solid var(--glass-clear-border);border-radius:var(--radius-lg);box-shadow:var(--edge-light-strong);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
+.headlineEyebrow{display:block;color:var(--blue-on-dark);font-size:.7rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+.headlineCopy h2{margin:12px 0 0;color:#fff;font-family:var(--font-serif);font-size:clamp(1.9rem,3.4vw,3rem);font-weight:400;line-height:1.02;letter-spacing:-.03em}
+/* Les retours à la ligne tapés dans l’espace admin sont gardés tels quels. */
+.headlineCopy>p{max-width:62ch;margin:12px 0 0;color:var(--text-muted-dark);line-height:1.65;white-space:pre-line}
+/* Cartouche blanc : un QR code y reste lisible, une photo y tient sans étirer la bande. */
+.headlineMedia{display:grid;padding:12px;background:#fff;border-radius:var(--radius-md);box-shadow:var(--shadow-float)}
+.headlineMedia img{display:block;width:clamp(140px,16vw,210px);height:auto;max-height:230px;border-radius:10px;object-fit:contain}
 .labels{display:flex;align-items:center;gap:18px;margin:26px 0}.labels img{width:auto;height:118px;padding:14px;object-fit:contain;background:#fff;border:1px solid var(--glass-milk-border);border-radius:var(--radius-sm);box-shadow:var(--shadow-ambient),var(--edge-light)}
 .teams>.sectionTitle{display:grid;grid-template-columns:1fr .65fr;gap:80px;align-items:end;margin-bottom:60px}.teams>.sectionTitle p{margin:0}
 .teamList{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
@@ -71,8 +83,9 @@
 .visitInfo p{margin:0;padding:26px 30px;font-size:1.05rem;line-height:1.7;background:rgb(255 255 255/.14);border:1px solid rgb(255 255 255/.3);border-radius:var(--radius-md);box-shadow:var(--edge-light-strong);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur)}
 .visitInfo .lightButton{margin-top:22px}
 .visit .lightButton{background:var(--ink);border-color:rgb(255 255 255/.25);box-shadow:0 16px 40px rgb(7 11 17/.35),var(--edge-light-strong);backdrop-filter:none;-webkit-backdrop-filter:none}
-@media(max-width:1000px){.introGrid,.programs{grid-template-columns:1fr}.introCopy{padding-top:0}.textLink{min-height:34px;padding-bottom:4px}.newsGrid{grid-template-columns:1fr}.newsSide{grid-template-columns:repeat(2,1fr)}.formation,.committee{grid-template-columns:1fr}.committeeCopy{order:2}.committeeImage{order:1}}
-@media(max-width:700px){.intro,.news,.teams,.partners{padding-right:18px;padding-left:18px}
+@media(max-width:1000px){.introGrid,.programs{grid-template-columns:1fr}.introCopy{padding-top:0}.textLink{min-height:34px;padding-bottom:4px}.newsGrid{grid-template-columns:1fr}.newsSide{grid-template-columns:repeat(2,1fr)}.formation,.committee{grid-template-columns:1fr}.headlineCard{grid-template-columns:1fr;justify-items:start}.committeeCopy{order:2}.committeeImage{order:1}}
+@media(max-width:700px){.intro,.news,.teams,.partners,.headline{padding-right:18px;padding-left:18px}
+.headlineCard{gap:18px;padding:20px}.headlineMedia img{width:clamp(130px,38vw,190px)}
 .introGrid{gap:26px}.introCopy .lead{margin-bottom:20px;font-size:clamp(1.35rem,5.4vw,2.25rem)}.introCopy>p:not(.lead){line-height:1.7}.outlineButton{margin-top:22px}.lightButton{margin-top:26px}
 .stats{grid-template-columns:repeat(2,1fr);gap:12px;margin-top:40px}.stats div{min-height:112px;padding:18px}.stats strong{font-size:clamp(2rem,9vw,2.6rem)}.stats span{margin-top:5px;font-size:.7rem}
 .sectionBar{display:grid;justify-items:start;margin-bottom:26px}.sectionTitle p{margin-top:18px;font-size:1rem}
