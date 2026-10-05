@@ -17,17 +17,6 @@ const helloAsso = {
   school: "https://www.helloasso.com/associations/cercle-d-echecs-de-bischwiller/adhesions/ecole-d-echecs-adhesion-saison-2026-2027",
 };
 
-/** Bandeau d’entrée de site : l’événement du moment, avant même les actualités. */
-const spotlight = {
-  slug: "open-international-de-bischwiller-2026",
-  eyebrow: "À LA UNE",
-  title: "Open International de Bischwiller",
-  dates: "Jeudi 27 → dimanche 30 août 2026",
-  detail: "7 rondes, trois opens homologués, prix garantis à partir de 150 participants, à la M.A.C. de Bischwiller.",
-  registration: "https://www.helloasso.com/associations/cercle-d-echecs-de-bischwiller/evenements/open-international-de-bischwiller",
-  qr: "/media/evenements/qr-open-international-2026.png",
-};
-
 const formationPhoto = "/media/wordpress/2026/02/20260214_133117-1-scaled.jpg";
 const committeePhoto = "/media/wordpress/2025/09/4U4A9864-scaled.jpg";
 
@@ -80,29 +69,6 @@ export function ClubIntro() {
         <div><strong>5×</strong><span>Champion de France</span></div>
         <div><strong>4</strong><span>Équipes nationales</span></div>
         <div><strong>7–77</strong><span>Pour tous les âges</span></div>
-      </div>
-    </section>
-  );
-}
-
-export function Spotlight() {
-  return (
-    <section className={styles.spotlight} aria-labelledby="spotlight-title" data-reveal>
-      <div className={styles.spotlightCard}>
-        <div className={styles.spotlightCopy}>
-          <span className={styles.spotlightEyebrow}>{spotlight.eyebrow}</span>
-          <h2 id="spotlight-title">{spotlight.title}</h2>
-          <p className={styles.spotlightDates}>{spotlight.dates}</p>
-          <p className={styles.spotlightDetail}>{spotlight.detail}</p>
-          <div className={styles.spotlightActions}>
-            <a className={styles.lightButton} href={spotlight.registration} target="_blank" rel="noreferrer">S’inscrire sur HelloAsso <Arrow /></a>
-            <Link className={styles.spotlightLink} href={`/actualites/${spotlight.slug}`}>Tous les détails <Arrow /></Link>
-          </div>
-        </div>
-        <a className={styles.spotlightQr} href={spotlight.registration} target="_blank" rel="noreferrer">
-          <Image src={spotlight.qr} alt="QR code d’inscription à l’Open International de Bischwiller sur HelloAsso" width={424} height={424} quality={90} sizes="180px" />
-          <span>Scannez pour vous inscrire</span>
-        </a>
       </div>
     </section>
   );
@@ -180,5 +146,5 @@ export function Visit() {
 }
 
 export function HomeSections() {
-  return <><Spotlight /><LatestNews /><ClubIntro /><Registrations /><Formation /><Teams /><Palmares /><Committee /><Partners /><Visit /></>;
+  return <><LatestNews /><ClubIntro /><Registrations /><Formation /><Teams /><Palmares /><Committee /><Partners /><Visit /></>;
 }
