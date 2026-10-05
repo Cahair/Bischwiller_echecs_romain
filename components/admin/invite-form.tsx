@@ -34,7 +34,13 @@ export function InviteForm() {
   return (
     <>
       {state.link ? <LinkPanel link={state.link} /> : null}
-      <form className={styles.inviteForm} action={action}>
+      {/*
+        Pas de remise à zéro par React après l’action : en cas de refus, l’état garde
+        le rôle choisi tandis que les boutons radio du navigateur, eux, reviendraient
+        au premier — et la seconde tentative créerait le compte avec le mauvais rôle.
+        En cas de succès, le formulaire se vide de lui-même, juste au-dessus.
+      */}
+      <form className={styles.inviteForm} action={action} onReset={(event) => event.preventDefault()}>
         {state.error ? (
           <p className={styles.error} role="alert">
             {state.error}

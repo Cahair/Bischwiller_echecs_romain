@@ -153,6 +153,11 @@ export function FeaturedEditor({ featured }: { featured: FeaturedDraft }) {
         action={action}
         noValidate
         onSubmit={onSubmit}
+        // React remet le formulaire à son état de départ après une action serveur.
+        // Ici tous les champs sont pilotés par React, alors cette remise à zéro ne
+        // fait qu’un dégât : elle décoche l’interrupteur dans la page alors que
+        // l’état, lui, reste à « affiché », et plus rien ne les raccorde.
+        onReset={(event) => event.preventDefault()}
         onKeyDown={(event) => {
           // Entrée dans un champ d’une ligne enverrait tout le formulaire : surprise garantie.
           if (event.key === "Enter" && event.target instanceof HTMLInputElement && event.target.type !== "checkbox") {

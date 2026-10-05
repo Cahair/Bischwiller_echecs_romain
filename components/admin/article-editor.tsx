@@ -470,6 +470,11 @@ export function ArticleEditor({
         action={action}
         noValidate
         onSubmit={onSubmit}
+        // React remet le formulaire à son état de départ après une action serveur.
+        // Les champs étant tous pilotés par React, ça ne fait que décocher les cases
+        // dans la page sans toucher à l’état : la case paraît cochée alors que le
+        // navigateur, lui, enverrait « décochée » à l’enregistrement suivant.
+        onReset={(event) => event.preventDefault()}
         onKeyDown={(event) => {
           // Entrée dans un champ d’une ligne enverrait tout le formulaire : surprise garantie.
           if (event.key === "Enter" && event.target instanceof HTMLInputElement && event.target.type !== "checkbox") {
