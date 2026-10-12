@@ -7,7 +7,9 @@
  *   pnpm admin:user supprimer <identifiant>
  *   pnpm admin:user secret
  *
- * Les comptes vivent dans `data/admin/users.json`, hors du dépôt. Le mot de
+ * Les comptes vivent dans `data/admin/users.json`, hors du dépôt — ou dans
+ * `admin/users.json` sous `SITE_DATA_DIR` quand il est défini, lu comme le site
+ * le lit, jusque dans `.env.local` (voir `data-dir.mjs`). Le mot de
  * passe n'y figure jamais : seul son condensé scrypt, au format
  * `scrypt:<sel hex>:<empreinte hex>` que relit `lib/admin/users.ts`.
  *
@@ -19,8 +21,9 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { createInterface } from "node:readline";
 import { randomBytes, scryptSync } from "node:crypto";
+import { ADMIN_DATA_DIR } from "./data-dir.mjs";
 
-const USERS_FILE = path.join(process.cwd(), "data", "admin", "users.json");
+const USERS_FILE = path.join(ADMIN_DATA_DIR, "users.json");
 const KEY_LENGTH = 64;
 
 function readUsers() {

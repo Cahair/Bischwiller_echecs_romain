@@ -1,14 +1,16 @@
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { createHash, randomBytes, scryptSync, timingSafeEqual } from "node:crypto";
+import { ADMIN_DATA_DIR } from "@/lib/storage";
 
 /**
- * Les comptes vivent hors du dépôt, dans `data/admin/users.json`, écrit par
- * `pnpm admin:user` et par la page « Comptes ». Le mot de passe n’est jamais
- * stocké : seul le condensé `scrypt:<sel hex>:<empreinte hex>` l’est, au même
- * format que celui produit par `scripts/admin/user.mjs`.
+ * Les comptes vivent hors du dépôt, dans `users.json` sous `ADMIN_DATA_DIR`
+ * (`data/admin/` en local), écrit par `pnpm admin:user` et par la page
+ * « Comptes ». Le mot de passe n’est jamais stocké : seul le condensé
+ * `scrypt:<sel hex>:<empreinte hex>` l’est, au même format que celui produit
+ * par `scripts/admin/user.mjs`.
  */
-export const ADMIN_DATA_DIR = path.join(process.cwd(), "data", "admin");
+export { ADMIN_DATA_DIR };
 const USERS_FILE = path.join(ADMIN_DATA_DIR, "users.json");
 const KEY_LENGTH = 64;
 

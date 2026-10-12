@@ -16,7 +16,7 @@ import {
  * Écriture des articles maison. L’espace admin produit exactement le format
  * lu par `lib/articles.ts` : un en-tête `clé: valeur JSON` suivi du Markdown,
  * pour qu’un article publié depuis le site soit indiscernable d’un article
- * écrit à la main dans `content/actualites/`.
+ * écrit à la main dans `content/actualites/` (voir `lib/storage.ts`).
  */
 export type StoredArticle = Article & { fileName: string };
 

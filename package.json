@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/admin/init-data.mjs && next build",
     "start": "next start",
     "lint": "eslint .",
     "wordpress:audit": "node scripts/wordpress/parse-export.mjs",
@@ -13,7 +13,8 @@
     "wordpress:import": "pnpm site:inventory && pnpm wordpress:audit && pnpm wordpress:media && pnpm wordpress:content",
     "site:inventory": "node scripts/wordpress/inventory-site.mjs",
     "admin:user": "node scripts/admin/user.mjs",
-    "admin:secret": "node scripts/admin/user.mjs secret"
+    "admin:secret": "node scripts/admin/user.mjs secret",
+    "data:init": "node scripts/admin/init-data.mjs"
   },
   "dependencies": {
     "@fontsource/dm-serif-display": "^5.2.8",

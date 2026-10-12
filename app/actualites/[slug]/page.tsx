@@ -12,7 +12,7 @@ import { plainExcerpt } from "@/lib/markdown";
 import { fullSizePhoto, photoFrame, photoSize } from "@/lib/image-size";
 import styles from "@/components/articles/articles.module.css";
 
-// Relu à chaque rendu : l’espace admin écrit dans content/actualites/ à chaud.
+// Relu à chaque rendu : l’espace admin écrit les articles à chaud (lib/storage.ts).
 const allArticles = () => mergeArticles(generatedArticles, getLocalArticles());
 
 export function generateStaticParams() { return allArticles().map(({ slug }) => ({ slug })); }

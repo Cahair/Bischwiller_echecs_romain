@@ -2,14 +2,16 @@ import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { cache } from "react";
 import { flowingText, slugify } from "@/lib/markdown";
+import { LOCAL_ARTICLES_DIR } from "@/lib/storage";
 
 /**
  * Les articles de `content/articles/` proviennent de l’export WordPress et sont
  * réécrits à chaque `pnpm wordpress:content`. Les articles rédigés depuis la
- * refonte vivent donc à part, dans `content/actualites/`, et sont fusionnés ici
- * avec l’export au moment du rendu.
+ * refonte vivent donc à part, dans `LOCAL_ARTICLES_DIR` (`content/actualites/`
+ * en local, le dossier de données en production — voir `lib/storage.ts`), et
+ * sont fusionnés ici avec l’export au moment du rendu.
  */
-export const LOCAL_ARTICLES_DIR = path.join(process.cwd(), "content", "actualites");
+export { LOCAL_ARTICLES_DIR };
 
 export { flowingText, slugify };
 
@@ -92,7 +94,7 @@ export function readAllLocalArticles(): Article[] {
 
 /**
  * Le disque est relu à chaque rendu — et non une fois au démarrage — parce que
- * l’espace admin écrit dans `content/actualites/` pendant que le serveur tourne.
+ * l’espace admin écrit dans `LOCAL_ARTICLES_DIR` pendant que le serveur tourne.
  * `cache()` limite la relecture à une fois par requête.
  */
 export const getLocalArticles = cache((): Article[] =>

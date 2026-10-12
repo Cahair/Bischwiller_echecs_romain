@@ -1,12 +1,12 @@
 import { mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { FEATURED_FILE as FILE } from "@/lib/storage";
 
 /**
  * Le contenu « à la une » de la page d’accueil : un titre, un texte, une photo,
- * et un interrupteur. Il vit dans `content/`, comme les articles écrits depuis
- * le site, pour être repris dans Git avec eux.
+ * et un interrupteur. Il vit avec les articles écrits depuis le site, dans le
+ * dossier de données en production (`lib/storage.ts`).
  */
-const FILE = path.join(process.cwd(), "content", "a-la-une.json");
 
 export type Featured = {
   /** Éteint, le bloc disparaît du site ; le texte, lui, reste enregistré. */

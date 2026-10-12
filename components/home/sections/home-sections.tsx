@@ -8,7 +8,7 @@ import { photoFrame, photoSize } from "@/lib/image-size";
 import { sponsors } from "@/lib/sponsors";
 import styles from "./home-sections.module.css";
 
-// Relu à chaque rendu : l’espace admin écrit dans content/actualites/ à chaud.
+// Relu à chaque rendu : l’espace admin écrit les articles à chaud (lib/storage.ts).
 const articleIndex = () => mergeArticles(generatedArticles, getLocalArticleIndex());
 
 type Article = ReturnType<typeof articleIndex>[number];

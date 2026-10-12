@@ -1,14 +1,14 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { MEDIA_DIR } from "@/lib/admin/media";
+import { MEDIA_DIR } from "@/lib/storage";
 
 /**
- * En production, Next ne sert depuis `public/` que les fichiers présents au
- * démarrage du serveur : une photo envoyée depuis l’espace admin resterait
- * introuvable — dans l’éditeur comme sur le site — jusqu’au prochain
- * redémarrage. Les requêtes que `public/` ne sait pas satisfaire aboutissent
- * ici, et le fichier est lu directement sur le disque. Après un redémarrage,
- * Next le sert de nouveau lui-même et cette route n’est plus sollicitée.
+ * Les requêtes sous `/media/actualites/` que `public/` ne sait pas satisfaire
+ * aboutissent ici, et le fichier est lu dans `MEDIA_DIR`. En production, c’est
+ * le chemin de toutes les photos envoyées depuis l’espace admin : elles vivent
+ * dans le dossier de données, hors de `public/` (`lib/storage.ts`). En local,
+ * cette route couvre les photos envoyées après le démarrage du serveur, que
+ * Next ne sert pas depuis `public/` avant un redémarrage.
  */
 const TYPES: Record<string, string> = {
   jpg: "image/jpeg",

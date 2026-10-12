@@ -158,8 +158,12 @@ export const sitePages: SitePage[] = [
         ],
       },
       {
-        title: "5. Cookies",
-        text: ["Le site peut utiliser des cookies pour améliorer l’expérience utilisateur. Vous pouvez à tout moment configurer votre navigateur pour refuser les cookies."],
+        title: "5. Cookies et mesure d’audience",
+        text: [
+          "La fréquentation du site est mesurée avec Umami, un outil de statistiques respectueux de la vie privée : il ne dépose aucun cookie, ne suit pas les visiteurs d’un site à l’autre et ne conserve ni adresse IP ni donnée permettant de les identifier. Les statistiques obtenues (pages consultées, site de provenance, type d’appareil, pays) sont anonymes et servent uniquement à améliorer le site.",
+          "Pour ne pas être comptabilisé, il suffit d’activer l’option « Ne pas me pister » (Do Not Track) de votre navigateur.",
+          "Seul l’espace de rédaction réservé aux membres du club utilise un cookie, strictement nécessaire à la connexion.",
+        ],
       },
       {
         title: "6. Responsabilité",

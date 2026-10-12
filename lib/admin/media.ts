@@ -2,13 +2,15 @@ import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { slugify } from "@/lib/articles";
 import { forgetPhotoSize } from "@/lib/image-size";
+import { MEDIA_DIR, MEDIA_URL } from "@/lib/storage";
 
 /**
  * Les visuels envoyés depuis l’espace admin rejoignent ceux des articles
- * maison, dans `public/media/actualites/`, servis tels quels par Next.
+ * maison, dans `MEDIA_DIR` : `public/media/actualites/` en local, le dossier
+ * de données en production. Ils sont servis sous `/media/actualites/`, par Next
+ * depuis `public/` ou par `app/media/actualites/[file]/route.ts`.
  */
-export const MEDIA_DIR = path.join(process.cwd(), "public", "media", "actualites");
-export const MEDIA_URL = "/media/actualites";
+export { MEDIA_DIR, MEDIA_URL };
 export const MAX_UPLOAD_BYTES = 15 * 1024 * 1024;
 
 /** Extension → type MIME attendu, pour refuser un exécutable renommé en .jpg. */
@@ -59,7 +61,8 @@ export function saveUpload(file: { name: string; type: string; bytes: Buffer }):
 
   mkdirSync(MEDIA_DIR, { recursive: true });
   const name = availableName(path.basename(file.name, path.extname(file.name)), extension);
-  writeFileSync(path.join(MEDIA_DIR, name), file.bytes);
+  // Le dossier de données n’a pas à être suivi par le build (voir `lib/storage.ts`).
+  writeFileSync(path.join(/*turbopackIgnore: true*/ MEDIA_DIR, name), file.bytes);
   const url = `${MEDIA_URL}/${name}`;
   forgetPhotoSize(url); // Le chemin a pu être demandé — et mis en cache comme absent — pendant l’aperçu.
   return { url, name };

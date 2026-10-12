@@ -1,6 +1,7 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import type { CSSProperties } from "react";
+import { MEDIA_DIR, MEDIA_URL } from "@/lib/storage";
 
 const DEFAULT_RATIO = "4/3";
 const sizes = new Map<string, [number, number] | null>();
@@ -34,14 +35,26 @@ function dimensions(bytes: Buffer): [number, number] | null {
   return null;
 }
 
-/** Dimensions natives d’une photo servie depuis /public, en pixels. */
+/**
+ * Où lire une photo du site : les envois de l’espace admin vivent dans
+ * `MEDIA_DIR`, hors de `public/` en production ; le reste est dans `public/`.
+ */
+function readPhoto(src: string): Buffer {
+  if (src.startsWith(`${MEDIA_URL}/`)) {
+    const uploaded = path.join(MEDIA_DIR, src.slice(MEDIA_URL.length + 1));
+    if (existsSync(uploaded)) return readFileSync(uploaded);
+  }
+  return readFileSync(path.join(process.cwd(), "public", src));
+}
+
+/** Dimensions natives d’une photo du site, en pixels. */
 export function photoSize(src: string): [number, number] | null {
   const known = sizes.get(src);
   if (known !== undefined) return known;
   let size: [number, number] | null = null;
   if (src.startsWith("/")) {
     try {
-      const found = dimensions(readFileSync(path.join(process.cwd(), "public", src)));
+      const found = dimensions(readPhoto(src));
       if (found && found[0] > 0 && found[1] > 0) size = found;
     } catch {
       // Photo illisible ou absente : le rendu retombe sur ses valeurs par défaut.
@@ -60,7 +73,7 @@ export function forgetPhotoSize(src: string): void {
   sizes.delete(src);
 }
 
-/** Ratio natif d’une photo servie depuis /public, au format CSS `aspect-ratio`. */
+/** Ratio natif d’une photo du site, au format CSS `aspect-ratio`. */
 export function photoRatio(src: string): string {
   const size = photoSize(src);
   return size ? `${size[0]}/${size[1]}` : DEFAULT_RATIO;

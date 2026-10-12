@@ -9,6 +9,7 @@ import "@fontsource/figtree/700.css";
 import "@fontsource/newsreader/400.css";
 import "@fontsource/newsreader/400-italic.css";
 import { SiteHeader } from "@/components/layout/site-header";
+import { UmamiAnalytics } from "@/components/layout/umami-analytics";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -47,6 +48,7 @@ export default function RootLayout({
       <body>
         <SiteHeader />
         {children}
+        <UmamiAnalytics />
       </body>
     </html>
   );
