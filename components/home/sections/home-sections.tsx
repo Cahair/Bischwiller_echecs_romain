@@ -23,9 +23,9 @@ const committeePhoto = "/media/wordpress/2025/09/4U4A9864-scaled.jpg";
 
 const teams = [
   ["01", "Nationale II", "L’équipe fanion du club", "https://echecs.asso.fr/EquipesCalendrier.aspx?Ref=878&Saison=3000"],
-  ["02", "Nationale IV", "La force du collectif", "https://www.echecs.asso.fr/"],
-  ["03", "Top Jeunes", "Former les champions de demain", "https://www.echecs.asso.fr/"],
-  ["04", "Nationale II Jeunes", "L’excellence en formation", "https://www.echecs.asso.fr/"],
+  ["02", "Nationale IV", "La force du collectif", "https://www.echecs.asso.fr/EquipesCalendrier.aspx?Ref=89&Saison=3000"],
+  ["03", "Top Jeunes", "Former les champions de demain", "https://www.echecs.asso.fr/EquipesCalendrier.aspx?Ref=5&Saison=3000"],
+  ["04", "Nationale II Jeunes", "L’excellence en formation", "https://www.echecs.asso.fr/EquipesCalendrier.aspx?Ref=13&Saison=3000"],
 ];
 
 function formatDate(date: string) {
